@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Tobii.Interaction;
 using System.IO;
 
+
 namespace experiment_eye
 {
     public partial class Form1 : Form
@@ -18,6 +19,17 @@ namespace experiment_eye
         private static Host _host;
         private static GazePointDataStream _gazePointDataStream;
         private static List<double> s1 = new List<double>();
+        private static Label text = new Label();
+       
+        private static string[] d = 
+        {
+            "Esto es un ejemplo simpl olá cvocê ç",
+            "dog ahahsh ess ehahahs ce oor ",
+            "llama"
+        };
+        private static List<int> possible = Enumerable.Range(0, d.Length).ToList();
+        static Random _random = new Random();
+        private static int ind = 0;
         public Form1()
         {
             
@@ -32,6 +44,21 @@ namespace experiment_eye
            
             Cursor.Hide();
         }
+
+        static void Shuffle<T>(T[] array)
+        {
+            int n = array.Length;
+            for (int i = 0; i < n; i++)
+            {
+                int r = i + _random.Next(n - i);
+                T t = array[r];
+                array[r] = array[i];
+                array[i] = t;
+            }
+        }
+
+
+
 
         private static void InitializeHost()
         {
@@ -60,27 +87,46 @@ namespace experiment_eye
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Bitmap img = (Bitmap)Image.FromFile(@"C:\Users\Inf-CG\Downloads\123.png", true);
+            // Bitmap img = (Bitmap)Image.FromFile(@"C:\Users\Inf-CG\Downloads\123.png", true);
             WindowState = FormWindowState.Maximized;
-
-
-            PictureBox pbx = new PictureBox();
-            pbx.Image = img;
-            pbx.Size = this.Size;
-            this.Controls.Add(pbx);
+            text.Font = new Font("Arial", 50, FontStyle.Bold);
+            text.Text = d[ind];
+            text.Size = this.Size;
+            text.TextAlign = ContentAlignment.MiddleCenter;
+            //PictureBox pbx = new PictureBox();
+            //pbx.Image = img;
+            //pbx.Size = this.Size;
+            this.Controls.Add(text);
+           // this.Controls.Add(pbx);
             //pbx.SizeMode = PictureBoxSizeMode.CenterImage;
-            pbx.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            timer.Interval = 30000;
+            //pbx.SizeMode = PictureBoxSizeMode.StretchImage;
+            
+            timer.Interval = 5000;
             InitializeHost();
             CreateAndVisualizeLightlyFilteredGazePointStream();
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
         }
+        private void keypressed(Object o, KeyPressEventArgs e)
+    {
+        // The keypressed method uses the KeyChar property to check 
+        // whether the ENTER key is pressed. 
+
+        // If the ENTER key is pressed, the Handled property is set to true, 
+        // to indicate the event is handled.
+        if (e.KeyChar == (char)Keys.Return)
+        {
+            e.Handled = true;
+        }
+    }
+
         void timer_Tick(object sender, EventArgs e)
         {
-            this.Close();
-            DisableConnectionWithTobiiEngine();
+            //this.Close();
+            //DisableConnectionWithTobiiEngine();
+            ind++;
+            text.Text = d[ind];
+
         }
     }
 }
