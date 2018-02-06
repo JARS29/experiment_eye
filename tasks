@@ -1,4 +1,4 @@
-1. Read from .txt line by line 
+1. Read from .txt line by line  OK 
 2. shuffle select the chunks (number of sequences to be showed) 
 3. put the stop between the sequences
 4. somehow discard eye-tracking data in the stop stage (put a fixation point in the screen and flags into the data file)

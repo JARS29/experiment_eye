@@ -20,10 +20,10 @@ namespace experiment_eye
         private static GazePointDataStream _gazePointDataStream;
         private static List<double> s1 = new List<double>();
         private static Label text = new Label();
-       
+        private static int[] size_s = { 2, 3, 4, 5, 6 };
+ 
         
-        private static string[] d = System.IO.File.ReadAllLines(@"C:test.txt", Encoding.GetEncoding("iso-8859-1"));
-
+        private static string[] d = File.ReadAllLines(@"C:test.txt", Encoding.GetEncoding("iso-8859-1"));
         static Random _random = new Random();
         private static int ind = 0;
         public Form1()
@@ -46,11 +46,30 @@ namespace experiment_eye
             int n = array.Length;
             for (int i = 0; i < n; i++)
             {
-                int r = i + _random.Next(n - i);
+                int r = i + _random.Next(n - i); 
                 T t = array[r];
                 array[r] = array[i];
                 array[i] = t;
             }
+        }
+
+        static int[] chunk()
+        {
+
+            int n = size_s.Sum();
+            int m = d.Length ;
+            int es = m / n;
+            Console.WriteLine(n.ToString() + " " + m.ToString() + " " + es.ToString());
+            List<int> temp = new List<int>();
+
+            for (int i = 0; i < m/n; i++)
+            {
+                Shuffle(size_s);
+                foreach (int s in size_s) {temp.Add(s); }
+            }
+            Console.WriteLine(temp.Count().ToString());
+            // foreach (int i in temp) {}
+            return temp.ToArray();
         }
 
         private static void InitializeHost()
@@ -79,6 +98,7 @@ namespace experiment_eye
         //System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private void Form1_Load(object sender, EventArgs e)
         {
+            chunk();
             // Bitmap img = (Bitmap)Image.FromFile(@"C:\Users\Inf-CG\Downloads\123.png", true);
             WindowState = FormWindowState.Maximized;
             text.Font = new Font("Arial", 50, FontStyle.Bold);
