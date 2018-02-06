@@ -21,13 +21,9 @@ namespace experiment_eye
         private static List<double> s1 = new List<double>();
         private static Label text = new Label();
        
-        private static string[] d = 
-        {
-            "Esto es un ejemplo simpl olá cvocê ç",
-            "dog ahahsh ess ehahahs ce oor ",
-            "llama"
-        };
-        private static List<int> possible = Enumerable.Range(0, d.Length).ToList();
+        
+        private static string[] d = System.IO.File.ReadAllLines(@"C:test.txt", Encoding.GetEncoding("iso-8859-1"));
+
         static Random _random = new Random();
         private static int ind = 0;
         public Form1()
@@ -41,7 +37,7 @@ namespace experiment_eye
             //this.BackgroundImage = img=;
             this.StartPosition = FormStartPosition.CenterScreen;
             //this.Size = new System.Drawing.Size(img.Width, img.Height);
-           
+            this.KeyPress += new KeyPressEventHandler(keypressed);
             Cursor.Hide();
         }
 
@@ -56,9 +52,6 @@ namespace experiment_eye
                 array[i] = t;
             }
         }
-
-
-
 
         private static void InitializeHost()
         {
@@ -83,50 +76,61 @@ namespace experiment_eye
                 }
             });
         }
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-
+        //System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private void Form1_Load(object sender, EventArgs e)
         {
             // Bitmap img = (Bitmap)Image.FromFile(@"C:\Users\Inf-CG\Downloads\123.png", true);
             WindowState = FormWindowState.Maximized;
             text.Font = new Font("Arial", 50, FontStyle.Bold);
-            text.Text = d[ind];
+            Shuffle(d);
+            //text.Text = d[ind];
             text.Size = this.Size;
             text.TextAlign = ContentAlignment.MiddleCenter;
             //PictureBox pbx = new PictureBox();
             //pbx.Image = img;
             //pbx.Size = this.Size;
             this.Controls.Add(text);
-           // this.Controls.Add(pbx);
+            // this.Controls.Add(pbx);
             //pbx.SizeMode = PictureBoxSizeMode.CenterImage;
             //pbx.SizeMode = PictureBoxSizeMode.StretchImage;
             
-            timer.Interval = 5000;
+
+           // timer.Interval = 5000;
+            //keypressed(this,new KeyPressEventArgs f);
             InitializeHost();
             CreateAndVisualizeLightlyFilteredGazePointStream();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
+          //  timer.Tick += new EventHandler(timer_Tick);
+          //  timer.Start();
         }
         private void keypressed(Object o, KeyPressEventArgs e)
     {
-        // The keypressed method uses the KeyChar property to check 
-        // whether the ENTER key is pressed. 
-
-        // If the ENTER key is pressed, the Handled property is set to true, 
+        
+        // If the SPACE key is pressed, the Handled property is set to true, 
         // to indicate the event is handled.
-        if (e.KeyChar == (char)Keys.Return)
+        if (e.KeyChar == (char)Keys.Space)
         {
+
+                if (ind < d.Length)
+                {
+                    text.Text = d[ind];
+                }
+                else
+                {
+                    this.Close();
+                    DisableConnectionWithTobiiEngine();
+                }
+                }
+            ind++;
+
             e.Handled = true;
-        }
     }
 
-        void timer_Tick(object sender, EventArgs e)
-        {
+        //void timer_Tick(object sender, EventArgs e)
+        //{
             //this.Close();
             //DisableConnectionWithTobiiEngine();
-            ind++;
-            text.Text = d[ind];
-
-        }
+           // ind++;
+            //text.Text = d[ind
+        //}
     }
 }
