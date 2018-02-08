@@ -28,6 +28,8 @@ namespace experiment_eye
         static Random _random = new Random();
         private static int count_key = 0;
         public static double time_st = 0;
+        public static double eye_x = 0;
+        public static double eye_y = 0;
         public Form1()
         {
             
@@ -63,13 +65,16 @@ namespace experiment_eye
             int es = m / n;
             List<int> temp = new List<int>();
 
-            for (int i = 0; i < m/n; i++)
+            for (int i = 1; i <= m/n; i++)
             {
                 Shuffle(size_s);
-                foreach (int s in size_s) {temp.Add(s);
+                foreach (int s in size_s)
+                {
+                    temp.Add(s);
                     using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\order.txt"))
                     {
                         sw.WriteLine(s.ToString());
+                        Console.WriteLine(s.ToString() + "  " + i.ToString());
                     }
                 }
             }
@@ -94,6 +99,8 @@ namespace experiment_eye
                 // Console.WriteLine("Timestamp: {0}\tX:{1}, Y:{2}", ts, x, y);
                 s1.Add(ts);
                 time_st = ts - s1[0];
+                eye_x = x;
+                eye_y = y;
                 using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\WriteLines.txt"))
                 {
                     sw.WriteLine((ts - s1[0]).ToString("0.#") + ";" + x.ToString("0.##") + ";" + y.ToString("0.##"));
@@ -129,15 +136,11 @@ namespace experiment_eye
           //  timer.Start();
         }
         private void keypressed(Object o, KeyPressEventArgs e)
-    {
-
-        if (e.KeyChar == (char)Keys.Enter) { text.Text = sentences[count_key]; }
-        
+    {        
         // If the SPACE key is pressed, the Handled property is set to true, 
         // to indicate the event is handled.
         if (e.KeyChar == (char)Keys.Space)
         {
-                string prints = "";
 
                 if (count_key < sentences.Length)
                 {
@@ -147,28 +150,32 @@ namespace experiment_eye
                         press_key = 0;
                         count_chunk++;
                         count_key--;
-                        prints = "  A";
+                        using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
+                        {
+                            sw.WriteLine(time_st.ToString("0.#") + ";" + " + ");
+                        }
                     }
-                    if (press_key < chunks[count_chunk])
+                    else if (press_key < chunks[count_chunk])
                     {
                         text.Text = sentences[count_key];
                         press_key++;
-                        prints = "  B";
+                        using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
+                        {
+                            sw.WriteLine(time_st.ToString("0.#") + ";" + " RT ");
+                        }
                     }
 
-                    Console.WriteLine(press_key.ToString() + "  " + chunks[count_chunk].ToString() + "  " + count_key.ToString() + "  " + count_chunk.ToString() + prints);
+                    // Console.WriteLine(press_key.ToString() + "  " + chunks[count_chunk].ToString() + "  " + count_key.ToString() + "  " + count_chunk.ToString());
                 }
                 else
                 {
                     this.Close();
                     DisableConnectionWithTobiiEngine();
                 }
+                count_key++;
             }
-            using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
-            {
-                sw.WriteLine(time_st.ToString("0.#") + ";" + " + ");
-            }
-            count_key++;
+            
+            
 
             e.Handled = true;
         }

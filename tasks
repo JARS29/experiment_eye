@@ -1,6 +1,11 @@
 1. Read from .txt line by line  OK 
-2. shuffle select the chunks (number of sequences to be showed) 
-3. put the stop between the sequences
-4. somehow discard eye-tracking data in the stop stage (put a fixation point in the screen and flags into the data file)
-5. recording reaction times (could be in the same data file from eye-tracking?)
-6. modify the processing file of eye-tracking data.
+2. shuffle select the chunks (number of sequences to be showed) ok
+3. put the stop between the sequences ok 
+4. somehow discard eye-tracking data in the stop stage (put a fixation point in the screen and flags into the data file) Fixation already ok+
+5. recording reaction times (could be in the same data file from eye-tracking?)  ok (with differnt file)
+6. modify the processing file of eye-tracking data.  on!
+
+
+
+====
+discarding the data is better in the processing file (after data collecting) 
