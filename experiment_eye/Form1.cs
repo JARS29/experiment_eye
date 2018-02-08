@@ -21,7 +21,7 @@ namespace experiment_eye
         private static List<double> s1 = new List<double>();
         private static Label text = new Label();
         private static int[] size_s = { 2, 3, 4, 5, 6 };
-        private static int press_key =  0;
+        private static int press_key = 0;
         private static int count_chunk = 0;
         private static int[] chunks = new int[0];
         private static string[] sentences = File.ReadAllLines(@"C:test.txt", Encoding.GetEncoding("iso-8859-1"));
@@ -30,14 +30,15 @@ namespace experiment_eye
         public static double time_st = 0;
         public static double eye_x = 0;
         public static double eye_y = 0;
+        public static bool band = false;
         public Form1()
         {
-            
+
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             //this.Size = img.Size;
             this.FormBorderStyle = FormBorderStyle.None;
-            
+
             //this.BackgroundImage = img=;
             this.StartPosition = FormStartPosition.CenterScreen;
             //this.Size = new System.Drawing.Size(img.Width, img.Height);
@@ -50,10 +51,14 @@ namespace experiment_eye
             int n = array.Length;
             for (int i = 0; i < n; i++)
             {
-                int r = i + _random.Next(n - i); 
+                int r = i + _random.Next(n - i);
                 T t = array[r];
                 array[r] = array[i];
                 array[i] = t;
+                using (StreamWriter res = File.AppendText(@"C:\Users\Inf-CG\Documents\sente.txt"))
+                {
+                    res.WriteLine(array[i]);
+                }
             }
         }
 
@@ -61,11 +66,11 @@ namespace experiment_eye
         {
 
             int n = size_s.Sum();
-            int m = sentences.Length ;
+            int m = sentences.Length;
             int es = m / n;
             List<int> temp = new List<int>();
 
-            for (int i = 1; i <= m/n; i++)
+            for (int i = 1; i <= m / n; i++)
             {
                 Shuffle(size_s);
                 foreach (int s in size_s)
@@ -101,21 +106,24 @@ namespace experiment_eye
                 time_st = ts - s1[0];
                 eye_x = x;
                 eye_y = y;
-                using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\WriteLines.txt"))
+                if (band)
                 {
-                    sw.WriteLine((ts - s1[0]).ToString("0.#") + ";" + x.ToString("0.##") + ";" + y.ToString("0.##"));
+                    using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\raw_eye.txt"))
+                    {
+                        sw.WriteLine((ts - s1[0]).ToString("0.#").Replace(",", ".") + ";" + x.ToString("0.##").Replace(",", ".") + ";" + y.ToString("0.##").Replace(",", "."));
+                    }
                 }
             });
         }
         //System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private void Form1_Load(object sender, EventArgs e)
         {
-            chunks=chunk();
+            chunks = chunk();
             // Bitmap img = (Bitmap)Image.FromFile(@"C:\Users\Inf-CG\Downloads\123.png", true);
             WindowState = FormWindowState.Maximized;
             text.Font = new Font("Arial", 50, FontStyle.Bold);
             Shuffle(sentences);
-            //text.Text = d[ind];
+            text.Text = "Precione a tecla 'espaço' para começar." ;
             text.Size = this.Size;
             text.TextAlign = ContentAlignment.MiddleCenter;
 
@@ -126,22 +134,22 @@ namespace experiment_eye
             // this.Controls.Add(pbx);
             //pbx.SizeMode = PictureBoxSizeMode.CenterImage;
             //pbx.SizeMode = PictureBoxSizeMode.StretchImage;
-            
 
-           // timer.Interval = 5000;
+
+            // timer.Interval = 5000;
             //keypressed(this,new KeyPressEventArgs f);
             InitializeHost();
             CreateAndVisualizeLightlyFilteredGazePointStream();
-          //  timer.Tick += new EventHandler(timer_Tick);
-          //  timer.Start();
+            //  timer.Tick += new EventHandler(timer_Tick);
+            //  timer.Start();
         }
         private void keypressed(Object o, KeyPressEventArgs e)
-    {        
-        // If the SPACE key is pressed, the Handled property is set to true, 
-        // to indicate the event is handled.
-        if (e.KeyChar == (char)Keys.Space)
         {
-
+            // If the SPACE key is pressed, the Handled property is set to true, 
+            // to indicate the event is handled.
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                band = true;
                 if (count_key < sentences.Length)
                 {
                     if (press_key == chunks[count_chunk])
@@ -152,7 +160,7 @@ namespace experiment_eye
                         count_key--;
                         using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
                         {
-                            sw.WriteLine(time_st.ToString("0.#") + ";" + " + ");
+                            sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "+");
                         }
                     }
                     else if (press_key < chunks[count_chunk])
@@ -161,7 +169,7 @@ namespace experiment_eye
                         press_key++;
                         using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
                         {
-                            sw.WriteLine(time_st.ToString("0.#") + ";" + " RT ");
+                            sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "RT");
                         }
                     }
 
@@ -174,18 +182,18 @@ namespace experiment_eye
                 }
                 count_key++;
             }
-            
-            
+
+
 
             e.Handled = true;
         }
 
         //void timer_Tick(object sender, EventArgs e)
         //{
-            //this.Close();
-            //DisableConnectionWithTobiiEngine();
-           // ind++;
-            //text.Text = d[ind
+        //this.Close();
+        //DisableConnectionWithTobiiEngine();
+        // ind++;
+        //text.Text = d[ind
         //}
     }
 }

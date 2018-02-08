@@ -6,6 +6,8 @@
 6. modify the processing file of eye-tracking data.  on!
 
 
-
+7. take screenshot for each sentence 
+8. split the data for each sentence to make the eye processing.
+9. Try to configure the output file (don't append) 
 ====
 discarding the data is better in the processing file (after data collecting) 
