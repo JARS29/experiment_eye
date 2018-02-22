@@ -1,375 +1,125 @@
-5
-2
-3
-4
-6
-6
-3
-4
-2
-5
-5
-2
-4
-3
-6
-3
-4
-5
-6
 2
 6
-4
 5
 3
+4
+4
+6
+3
 2
-Estudo diz: grande parte do país pode ficar mais frio que o normal.
-Ele chegou muito calmo no lugar onde teria o encontro com os pais.
-Até mesmo o vento soa estranho em um local assim, tão deserto.
-Colher milho nunca foi a tarefa mais divertida de acordo com Zé.
-As frases simples são as mais fáceis de lembrar, mesmo após muito tempo.
-A fada dos dentes faz parte de um conto antigo para crianças.
+5
+4
+3
+2
+6
+5
+3
+4
+2
+5
+6
+3
+2
+4
+5
+6
 O livro chegou pelo correio há poucos meses e já está sujo.
-Quando pescou seu primeiro peixe, preferiu devolvê-lo ao lago.
-Quero saber se você aceita um copo de suco de abacaxi.
-Não entenderam o motivo de tanto orgulho por parte dela.
-Ele vai à igreja todos os dias pra pedir perdão pelos pecados.
-Aquele museu tinha ossos de animais tão grandes, raros e antigos.
-Sentei na cadeira depois de ter ido à praia porque estava podre. 
-Meus vizinhos perturbam a todos com o barulho das festas que fazem. 
-Seus pais lhe deram carro, casa, viagens, dinheiro e até um emprego. 
-Vista o paletó, anunciaram que lá fora está quase nevando.
-Ele correu sem parar até chegar no lugar em que elas estavam 
-Escrever frases com determinado número de sílabas é difícil.
-Gostaria de poder sentar com sua avó e tecer uma meia.
-Sempre juntos, o guri e a guria brincavam no parque de diversões. 
-Chama a tua mãe pra te ajudar a fazer aquele tema estranho.
-A casa não tinha mais teto nem parede depois do vento de ontem.
-Textos infantis ajudam a melhorar a memória de crianças.
-Chegou a hora de ir à praia, a tal viagem esperada por todos.
-Penso que todos devem visitar aquele local uma vez na vida.
-A religião é comum no Brasil, mesmo o Estado sendo laico.
-A qualquer momento podemos esquecer tudo que lembramos e sentimos.
-Ele ainda não tinha ensaiado a música, mas subiu no palco.
-Já completei o álbum da outra Copa, quero repetir o feito.
-Não conseguia acreditar que o Papai Noel nunca existiu.
-Os partidos andam agindo de forma a apoiar uma guerra civil.
-Os ratos têm medo de felinos porque sabem que eles são perigosos.
-Somos muito amigos e temos as mesmas coisas pra brincar na escola.
-Não tema, fico contigo até seu pai chegar e te levar embora.
-Em menos de cinco anos pretendo comprar minha casa na praia.
-O pote de água está cheio porque o cão não está com sede.
-Subir a montanha à noite não é seguro porque vocês podem cair.
-Este bar serve peixe frito, bife duro, suco, coca, torta e pão.
-Como a nossa querida tia dizia, há malas que vêm de trem.
-O lugar afirma servir a melhor porção de doce de frutas com mel.
-Contei com ela a vida toda até que tive uma infeliz surpresa.
-Só quem é mãe sabe como é dar de mamar pra um bebê recém nascido.
-A moça gosta de comprar muitas peças de roupa nas lojas do centro.
-Saiba que o pato do lago gosta de pão, de bolo, de uva e de manga. 
-Conte até dez e fale baixo para não acordar seus primos mais novos. 
-A maneira como se comporta indica que ela é música.
-Cães e gatos geralmente não se dão bem, mas aqueles dois são anormais.
-Caí da escada e não quebrei nada, mas torci os pés e os braços.
-O animal é todo negro, grande e muito raro nesta região.
-Não podemos duvidar que todos eles foram forçados a participar.
-Quando era menor, não podia ver os filmes que pode ver hoje. 
-Os grandes sinos da torre relembram os dias de glória do povo.
-Brinquedos são, pelos bebês, os favoritos presentes de natal e páscoa.
-Ele não soube notar a presença de seu amigo na mesma sala.
-Houve um tempo em que os gatos não viviam dentro de apartamentos.
-Crescer perto da Lapa, dia e noite na rua, o motivou a agir.
-Pessoas de bom senso não se deixam enganar por belas aparências.
-Faz tempo que eles não mandam cartas pra suas amigas de infância.
-Eles são lindos, espertos e fortes, mas não têm ninguém pra namorar.
-Ao dizer adeus, pôde apenas desejar boa sorte ao professor.
-O papel é feito de árvores que são plantadas para esse fim.
-Quem sabe demais às vezes fala o que não deve, diz o meu avô.
-As gavetas estão cheias de talheres e as paredes lembram museus.
-Sempre procuro ter a calma que preciso para cumprir a missão.
-A bala atravessa muitas coisas, mas não pode contra este aço aqui.
-Mando em tudo nesta casa, disse o homem com a barba por fazer. 
-Logo após bater o carro, Lucas desmaiou e não pôde nos avisar.
-É claro que os peixes não podem andar na praia, mas podem nadar no mar.
-As plantas podem crescer com a ajuda de água e da luz do Sol.
-O encontro do grupo de culinária seria no hotel, mas choveu.
-A menina beija sua mãe quando lembra do irmão que está por vir.
-O mesmo padre sempre reza a missa na capela para seus fiéis.
-Ele e seu cachorro são uma dupla e tanto desde pequenos.
-Eles não sabem que cães fazem xixi em todos os postes desta rua.
-Para ele é importante cada dia se sentir melhor no que faz.
-Cada um de nós é especial, disse o mestre com um sorriso.
-Pode ser difícil, mas não se deve desistir assim na primeira vez. 
-A frente com janelas para a rua é a preferida pelo casal.
-Quem não tem animais pra cuidar não sabe como isso pode ser chato.
-As capas de chuva rasgaram e por isso não funcionam mais direito.
-O café que ofereceram tinha muito açúcar, quase um melado.
-Mesmo que eles não te vejam lá, eles sentirão a tua presença. 
-Tudo passou tão rápido que o casal distraído nem se deu conta.
+Ele chegou muito calmo no lugar onde teria o encontro com os pais.
 Quando viu o homem entrar, sua filha já havia saído de casa.
-Quando for conveniente, venha ver se lhe dou o seu salário.
-Lá mora uma avó cega que precisa de cuidados dos outros.
+A fada dos dentes faz parte de um conto antigo para crianças.
+Para ele é importante cada dia se sentir melhor no que faz.
+Quem sabe demais às vezes fala o que não deve, diz o meu avô.
+Vista o paletó, anunciaram que lá fora está quase nevando.
+Pessoas de bom senso não se deixam enganar por belas aparências.
+Molhe com água os canteiros com lírios, eles agradecem muito.
+Ele ainda não tinha ensaiado a música, mas subiu no palco.
+O papel é feito de árvores que são plantadas para esse fim.
+O café que ofereceram tinha muito açúcar, quase um melado.
+Quando pescou seu primeiro peixe, preferiu devolvê-lo ao lago.
+O mesmo padre sempre reza a missa na capela para seus fiéis.
+Pode ser difícil, mas não se deve desistir assim na primeira vez. 
+Sentei na cadeira depois de ter ido à praia porque estava podre. 
+Bombas e armas cada dia mais fortes, não sabemos onde vamos parar.
+Errava sempre ao mirar o alvo com seu arco e flecha de índios.
+Cães e gatos geralmente não se dão bem, mas aqueles dois são anormais.
+Crescer perto da Lapa, dia e noite na rua, o motivou a agir.
+Não podemos duvidar que todos eles foram forçados a participar.
+Somos muito amigos e temos as mesmas coisas pra brincar na escola.
+Logo que vi o sujeito corri para alcançá-lo, mas não consegui.
 Alguns gostam de carne, outros preferem plantas e outros aceitam os dois.
-Os políticos foram eleitos com a maioria dos votos do povo.
-Errava sempre ao mirar o alvo com seu arco e flecha de índios.
-A lancheria da praça não é mais como já foi no tempo dele.
-Não vá para a nova parte do bairro, não conhecemos quem mora lá.
-Bancos preveem crescimento maior que no mesmo mês do ano passado.
-Nossa fome fez parecer que a laranja foi a melhor que já comemos.
-Elas seguem reto porque sabem que lá está a sua casa nova.
-Depois de passar por um acidente, ele não pode formar novas memórias.
-O casulo pode não ser bonito, mas as asas da borboleta o são.
-Molhe com água os canteiros com lírios, eles agradecem muito.
-Logo que vi o sujeito corri para alcançá-lo, mas não consegui.
-Bombas e armas cada dia mais fortes, não sabemos onde vamos parar.
-A mosca pousou em todos os lugares da casa exceto nos quartos.
-3
-5
-6
-4
-2
-2
-6
-4
-5
-3
-5
-4
-2
-6
-3
-2
-3
-5
-6
-4
-5
-4
-2
-6
-3
-Quem sabe demais às vezes fala o que não deve, diz o meu avô.
-Os partidos andam agindo de forma a apoiar uma guerra civil.
-Textos infantis ajudam a melhorar a memória de crianças.
-Depois de passar por um acidente, ele não pode formar novas memórias.
-Meus vizinhos perturbam a todos com o barulho das festas que fazem. 
-Só quem é mãe sabe como é dar de mamar pra um bebê recém nascido.
-A moça gosta de comprar muitas peças de roupa nas lojas do centro.
-Quero saber se você aceita um copo de suco de abacaxi.
-Escrever frases com determinado número de sílabas é difícil.
+Ao dizer adeus, pôde apenas desejar boa sorte ao professor.
 Cada um de nós é especial, disse o mestre com um sorriso.
-Contei com ela a vida toda até que tive uma infeliz surpresa.
-Ele correu sem parar até chegar no lugar em que elas estavam 
-Ele vai à igreja todos os dias pra pedir perdão pelos pecados.
-A qualquer momento podemos esquecer tudo que lembramos e sentimos.
-Já completei o álbum da outra Copa, quero repetir o feito.
-O café que ofereceram tinha muito açúcar, quase um melado.
-A mosca pousou em todos os lugares da casa exceto nos quartos.
-Logo que vi o sujeito corri para alcançá-lo, mas não consegui.
-As capas de chuva rasgaram e por isso não funcionam mais direito.
-É claro que os peixes não podem andar na praia, mas podem nadar no mar.
-Os grandes sinos da torre relembram os dias de glória do povo.
-A frente com janelas para a rua é a preferida pelo casal.
-Eles são lindos, espertos e fortes, mas não têm ninguém pra namorar.
-Os ratos têm medo de felinos porque sabem que eles são perigosos.
-O animal é todo negro, grande e muito raro nesta região.
-Não entenderam o motivo de tanto orgulho por parte dela.
-Quando pescou seu primeiro peixe, preferiu devolvê-lo ao lago.
-Quem não tem animais pra cuidar não sabe como isso pode ser chato.
-Gostaria de poder sentar com sua avó e tecer uma meia.
-O livro chegou pelo correio há poucos meses e já está sujo.
-O casulo pode não ser bonito, mas as asas da borboleta o são.
-Pessoas de bom senso não se deixam enganar por belas aparências.
-Não conseguia acreditar que o Papai Noel nunca existiu.
-Somos muito amigos e temos as mesmas coisas pra brincar na escola.
-Ele não soube notar a presença de seu amigo na mesma sala.
-Quando viu o homem entrar, sua filha já havia saído de casa.
-Crescer perto da Lapa, dia e noite na rua, o motivou a agir.
-Sempre juntos, o guri e a guria brincavam no parque de diversões. 
 Estudo diz: grande parte do país pode ficar mais frio que o normal.
-Bancos preveem crescimento maior que no mesmo mês do ano passado.
-As frases simples são as mais fáceis de lembrar, mesmo após muito tempo.
-Sempre procuro ter a calma que preciso para cumprir a missão.
-O pote de água está cheio porque o cão não está com sede.
-O encontro do grupo de culinária seria no hotel, mas choveu.
-Vista o paletó, anunciaram que lá fora está quase nevando.
-A menina beija sua mãe quando lembra do irmão que está por vir.
-Molhe com água os canteiros com lírios, eles agradecem muito.
-A casa não tinha mais teto nem parede depois do vento de ontem.
-Cães e gatos geralmente não se dão bem, mas aqueles dois são anormais.
-Em menos de cinco anos pretendo comprar minha casa na praia.
-Conte até dez e fale baixo para não acordar seus primos mais novos. 
-Seus pais lhe deram carro, casa, viagens, dinheiro e até um emprego. 
-Para ele é importante cada dia se sentir melhor no que faz.
-Penso que todos devem visitar aquele local uma vez na vida.
-Ele ainda não tinha ensaiado a música, mas subiu no palco.
-Este bar serve peixe frito, bife duro, suco, coca, torta e pão.
-A fada dos dentes faz parte de um conto antigo para crianças.
-A bala atravessa muitas coisas, mas não pode contra este aço aqui.
-Quando era menor, não podia ver os filmes que pode ver hoje. 
-Sentei na cadeira depois de ter ido à praia porque estava podre. 
-Saiba que o pato do lago gosta de pão, de bolo, de uva e de manga. 
-Os políticos foram eleitos com a maioria dos votos do povo.
-Eles não sabem que cães fazem xixi em todos os postes desta rua.
-Elas seguem reto porque sabem que lá está a sua casa nova.
-A religião é comum no Brasil, mesmo o Estado sendo laico.
-Chegou a hora de ir à praia, a tal viagem esperada por todos.
-Quando for conveniente, venha ver se lhe dou o seu salário.
-Mesmo que eles não te vejam lá, eles sentirão a tua presença. 
-O papel é feito de árvores que são plantadas para esse fim.
-Bombas e armas cada dia mais fortes, não sabemos onde vamos parar.
-Faz tempo que eles não mandam cartas pra suas amigas de infância.
 Até mesmo o vento soa estranho em um local assim, tão deserto.
-Colher milho nunca foi a tarefa mais divertida de acordo com Zé.
-Não vá para a nova parte do bairro, não conhecemos quem mora lá.
-Não tema, fico contigo até seu pai chegar e te levar embora.
-As plantas podem crescer com a ajuda de água e da luz do Sol.
-Lá mora uma avó cega que precisa de cuidados dos outros.
-Não podemos duvidar que todos eles foram forçados a participar.
-Chama a tua mãe pra te ajudar a fazer aquele tema estranho.
-Tudo passou tão rápido que o casal distraído nem se deu conta.
-Subir a montanha à noite não é seguro porque vocês podem cair.
+A bala atravessa muitas coisas, mas não pode contra este aço aqui.
+Os ratos têm medo de felinos porque sabem que eles são perigosos.
+Ele vai à igreja todos os dias pra pedir perdão pelos pecados.
+Quem não tem animais pra cuidar não sabe como isso pode ser chato.
+Elas seguem reto porque sabem que lá está a sua casa nova.
+Eles não sabem que cães fazem xixi em todos os postes desta rua.
 O lugar afirma servir a melhor porção de doce de frutas com mel.
-Errava sempre ao mirar o alvo com seu arco e flecha de índios.
-A maneira como se comporta indica que ela é música.
-O mesmo padre sempre reza a missa na capela para seus fiéis.
-Aquele museu tinha ossos de animais tão grandes, raros e antigos.
-Caí da escada e não quebrei nada, mas torci os pés e os braços.
-Ele chegou muito calmo no lugar onde teria o encontro com os pais.
-Nossa fome fez parecer que a laranja foi a melhor que já comemos.
-Pode ser difícil, mas não se deve desistir assim na primeira vez. 
-Como a nossa querida tia dizia, há malas que vêm de trem.
-Brinquedos são, pelos bebês, os favoritos presentes de natal e páscoa.
-Mando em tudo nesta casa, disse o homem com a barba por fazer. 
+É claro que os peixes não podem andar na praia, mas podem nadar no mar.
+Este bar serve peixe frito, bife duro, suco, coca, torta e pão.
+Os partidos andam agindo de forma a apoiar uma guerra civil.
+Não tema, fico contigo até seu pai chegar e te levar embora.
 Houve um tempo em que os gatos não viviam dentro de apartamentos.
 As gavetas estão cheias de talheres e as paredes lembram museus.
-A lancheria da praça não é mais como já foi no tempo dele.
-Logo após bater o carro, Lucas desmaiou e não pôde nos avisar.
-Ao dizer adeus, pôde apenas desejar boa sorte ao professor.
-Alguns gostam de carne, outros preferem plantas e outros aceitam os dois.
-Ele e seu cachorro são uma dupla e tanto desde pequenos.
-2
-3
-6
-4
-5
-5
-6
-4
-2
-3
-6
-5
-3
-2
-4
-5
-3
-2
-6
-4
-2
-4
-5
-6
-3
-Ele não soube notar a presença de seu amigo na mesma sala.
-Não entenderam o motivo de tanto orgulho por parte dela.
-Só quem é mãe sabe como é dar de mamar pra um bebê recém nascido.
-A casa não tinha mais teto nem parede depois do vento de ontem.
-Bancos preveem crescimento maior que no mesmo mês do ano passado.
-Logo após bater o carro, Lucas desmaiou e não pôde nos avisar.
-A frente com janelas para a rua é a preferida pelo casal.
-Ele e seu cachorro são uma dupla e tanto desde pequenos.
-A mosca pousou em todos os lugares da casa exceto nos quartos.
-O casulo pode não ser bonito, mas as asas da borboleta o são.
-Alguns gostam de carne, outros preferem plantas e outros aceitam os dois.
-As plantas podem crescer com a ajuda de água e da luz do Sol.
-Faz tempo que eles não mandam cartas pra suas amigas de infância.
-Quando for conveniente, venha ver se lhe dou o seu salário.
-Quando era menor, não podia ver os filmes que pode ver hoje. 
-O livro chegou pelo correio há poucos meses e já está sujo.
 Gostaria de poder sentar com sua avó e tecer uma meia.
-Textos infantis ajudam a melhorar a memória de crianças.
-A bala atravessa muitas coisas, mas não pode contra este aço aqui.
-Cães e gatos geralmente não se dão bem, mas aqueles dois são anormais.
-Pessoas de bom senso não se deixam enganar por belas aparências.
-Os políticos foram eleitos com a maioria dos votos do povo.
-Sempre juntos, o guri e a guria brincavam no parque de diversões. 
-Ao dizer adeus, pôde apenas desejar boa sorte ao professor.
-Penso que todos devem visitar aquele local uma vez na vida.
-Chegou a hora de ir à praia, a tal viagem esperada por todos.
-Depois de passar por um acidente, ele não pode formar novas memórias.
-Bombas e armas cada dia mais fortes, não sabemos onde vamos parar.
-Mesmo que eles não te vejam lá, eles sentirão a tua presença. 
-Aquele museu tinha ossos de animais tão grandes, raros e antigos.
-O animal é todo negro, grande e muito raro nesta região.
-Estudo diz: grande parte do país pode ficar mais frio que o normal.
-Errava sempre ao mirar o alvo com seu arco e flecha de índios.
-Elas seguem reto porque sabem que lá está a sua casa nova.
-As capas de chuva rasgaram e por isso não funcionam mais direito.
-Eles não sabem que cães fazem xixi em todos os postes desta rua.
-Vista o paletó, anunciaram que lá fora está quase nevando.
-Quem sabe demais às vezes fala o que não deve, diz o meu avô.
-A moça gosta de comprar muitas peças de roupa nas lojas do centro.
-Quando viu o homem entrar, sua filha já havia saído de casa.
-Até mesmo o vento soa estranho em um local assim, tão deserto.
-O papel é feito de árvores que são plantadas para esse fim.
-Nossa fome fez parecer que a laranja foi a melhor que já comemos.
-A lancheria da praça não é mais como já foi no tempo dele.
-Ele correu sem parar até chegar no lugar em que elas estavam 
-Tudo passou tão rápido que o casal distraído nem se deu conta.
-Os ratos têm medo de felinos porque sabem que eles são perigosos.
 Escrever frases com determinado número de sílabas é difícil.
-Não vá para a nova parte do bairro, não conhecemos quem mora lá.
-Já completei o álbum da outra Copa, quero repetir o feito.
 O pote de água está cheio porque o cão não está com sede.
-Quando pescou seu primeiro peixe, preferiu devolvê-lo ao lago.
-Brinquedos são, pelos bebês, os favoritos presentes de natal e páscoa.
-Ele chegou muito calmo no lugar onde teria o encontro com os pais.
-As gavetas estão cheias de talheres e as paredes lembram museus.
-Pode ser difícil, mas não se deve desistir assim na primeira vez. 
-O encontro do grupo de culinária seria no hotel, mas choveu.
+Ele correu sem parar até chegar no lugar em que elas estavam 
+A casa não tinha mais teto nem parede depois do vento de ontem.
 Seus pais lhe deram carro, casa, viagens, dinheiro e até um emprego. 
-Não podemos duvidar que todos eles foram forçados a participar.
-Contei com ela a vida toda até que tive uma infeliz surpresa.
-Meus vizinhos perturbam a todos com o barulho das festas que fazem. 
-O mesmo padre sempre reza a missa na capela para seus fiéis.
-Eles são lindos, espertos e fortes, mas não têm ninguém pra namorar.
-A qualquer momento podemos esquecer tudo que lembramos e sentimos.
-Sempre procuro ter a calma que preciso para cumprir a missão.
-Em menos de cinco anos pretendo comprar minha casa na praia.
-Chama a tua mãe pra te ajudar a fazer aquele tema estranho.
-A maneira como se comporta indica que ela é música.
-Logo que vi o sujeito corri para alcançá-lo, mas não consegui.
-O café que ofereceram tinha muito açúcar, quase um melado.
-A religião é comum no Brasil, mesmo o Estado sendo laico.
-O lugar afirma servir a melhor porção de doce de frutas com mel.
-Mando em tudo nesta casa, disse o homem com a barba por fazer. 
-Não conseguia acreditar que o Papai Noel nunca existiu.
-A menina beija sua mãe quando lembra do irmão que está por vir.
-Caí da escada e não quebrei nada, mas torci os pés e os braços.
-Crescer perto da Lapa, dia e noite na rua, o motivou a agir.
-Ele vai à igreja todos os dias pra pedir perdão pelos pecados.
+Brinquedos são, pelos bebês, os favoritos presentes de natal e páscoa.
 Colher milho nunca foi a tarefa mais divertida de acordo com Zé.
-Quero saber se você aceita um copo de suco de abacaxi.
-A fada dos dentes faz parte de um conto antigo para crianças.
-Somos muito amigos e temos as mesmas coisas pra brincar na escola.
-Para ele é importante cada dia se sentir melhor no que faz.
-Cada um de nós é especial, disse o mestre com um sorriso.
+A menina beija sua mãe quando lembra do irmão que está por vir.
+Logo após bater o carro, Lucas desmaiou e não pôde nos avisar.
 As frases simples são as mais fáceis de lembrar, mesmo após muito tempo.
-É claro que os peixes não podem andar na praia, mas podem nadar no mar.
-Lá mora uma avó cega que precisa de cuidados dos outros.
-Saiba que o pato do lago gosta de pão, de bolo, de uva e de manga. 
+O casulo pode não ser bonito, mas as asas da borboleta o são.
+A mosca pousou em todos os lugares da casa exceto nos quartos.
+O encontro do grupo de culinária seria no hotel, mas choveu.
+Sempre procuro ter a calma que preciso para cumprir a missão.
+Faz tempo que eles não mandam cartas pra suas amigas de infância.
+Textos infantis ajudam a melhorar a memória de crianças.
+Meus vizinhos perturbam a todos com o barulho das festas que fazem. 
+O animal é todo negro, grande e muito raro nesta região.
+Quando era menor, não podia ver os filmes que pode ver hoje. 
 Conte até dez e fale baixo para não acordar seus primos mais novos. 
-Este bar serve peixe frito, bife duro, suco, coca, torta e pão.
-Não tema, fico contigo até seu pai chegar e te levar embora.
-Subir a montanha à noite não é seguro porque vocês podem cair.
-Sentei na cadeira depois de ter ido à praia porque estava podre. 
-Houve um tempo em que os gatos não viviam dentro de apartamentos.
-Molhe com água os canteiros com lírios, eles agradecem muito.
-Os partidos andam agindo de forma a apoiar uma guerra civil.
+Chama a tua mãe pra te ajudar a fazer aquele tema estranho.
+Ele e seu cachorro são uma dupla e tanto desde pequenos.
+Eles são lindos, espertos e fortes, mas não têm ninguém pra namorar.
 Como a nossa querida tia dizia, há malas que vêm de trem.
-Ele ainda não tinha ensaiado a música, mas subiu no palco.
+Ele não soube notar a presença de seu amigo na mesma sala.
+Caí da escada e não quebrei nada, mas torci os pés e os braços.
+Em menos de cinco anos pretendo comprar minha casa na praia.
+Quero saber se você aceita um copo de suco de abacaxi.
+Nossa fome fez parecer que a laranja foi a melhor que já comemos.
+A maneira como se comporta indica que ela é música.
+A moça gosta de comprar muitas peças de roupa nas lojas do centro.
+Não entenderam o motivo de tanto orgulho por parte dela.
+Lá mora uma avó cega que precisa de cuidados dos outros.
+Subir a montanha à noite não é seguro porque vocês podem cair.
+Mesmo que eles não te vejam lá, eles sentirão a tua presença. 
+Chegou a hora de ir à praia, a tal viagem esperada por todos.
+As capas de chuva rasgaram e por isso não funcionam mais direito.
+Não conseguia acreditar que o Papai Noel nunca existiu.
+Quando for conveniente, venha ver se lhe dou o seu salário.
+A lancheria da praça não é mais como já foi no tempo dele.
+Depois de passar por um acidente, ele não pode formar novas memórias.
+Já completei o álbum da outra Copa, quero repetir o feito.
+A qualquer momento podemos esquecer tudo que lembramos e sentimos.
+As plantas podem crescer com a ajuda de água e da luz do Sol.
+Os políticos foram eleitos com a maioria dos votos do povo.
+A frente com janelas para a rua é a preferida pelo casal.
 Os grandes sinos da torre relembram os dias de glória do povo.
-Quem não tem animais pra cuidar não sabe como isso pode ser chato.
+Aquele museu tinha ossos de animais tão grandes, raros e antigos.
+Bancos preveem crescimento maior que no mesmo mês do ano passado.
+Saiba que o pato do lago gosta de pão, de bolo, de uva e de manga. 
+A religião é comum no Brasil, mesmo o Estado sendo laico.
+Penso que todos devem visitar aquele local uma vez na vida.
+Tudo passou tão rápido que o casal distraído nem se deu conta.
+Não vá para a nova parte do bairro, não conhecemos quem mora lá.
+Só quem é mãe sabe como é dar de mamar pra um bebê recém nascido.
+Contei com ela a vida toda até que tive uma infeliz surpresa.
+Sempre juntos, o guri e a guria brincavam no parque de diversões. 
+Mando em tudo nesta casa, disse o homem com a barba por fazer. 
