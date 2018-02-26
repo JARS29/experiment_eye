@@ -1,8 +1,8 @@
 import numpy as np
 import time
 import os
-from detectors import fixation_detection, saccade_detection
-from gazeplotter import draw_fixations, draw_heatmap, draw_scanpath, draw_raw
+#from detectors import fixation_detection, saccade_detection
+#from gazeplotter import draw_fixations, draw_heatmap, draw_scanpath, draw_raw
 
 #eye_f = file('raw_eye.txt')
 #rt_f = file('rt.txt')
@@ -36,9 +36,11 @@ while not it.finished:
     if it_1.finished and it_0.finished:
         break
 
-#print(x[0:index_1[0]+1])
-#print(index_0, len(index_0))
-#print(it_1, len(index_1))
+print(index_0, len(index_0))
+print(index_1, len(index_1))
+
+print(x[0:index_1[0]+1])
+
 st_=[]
 x_=[]
 y_=[]
