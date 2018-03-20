@@ -1,75 +1,90 @@
 import numpy as np
 import time
 import os
-#from detectors import fixation_detection, saccade_detection
-#from gazeplotter import draw_fixations, draw_heatmap, draw_scanpath, draw_raw
+from detectors import fixation_detection, saccade_detection
+from gazeplotter import draw_fixations, draw_heatmap, draw_scanpath, draw_raw
 
-#eye_f = file('raw_eye.txt')
-#rt_f = file('rt.txt')
-st, x, y = np.loadtxt('raw_eye.txt', delimiter = ';',  unpack=True)
-st_, rt = np.loadtxt('rt.txt', delimiter = ';',  unpack=True)
-st_1=st_[np.isin(rt,1)]
-st_0=st_[np.isin(rt,0)]
-it = np.nditer(st, flags=['f_index'])
-it_1=np.nditer(st_1, flags=['f_index'])
-it_0=np.nditer(st_0, flags=['f_index'])
-index_1=[]
-index_0=[]
-#print(it_1[0], it_0[0])
-it_1.iternext()
+#######################################
+##
+## Load data (raw and rt)
+st, x, y = np.loadtxt('raw_eye.txt', delimiter=';', unpack=True)
+st_rt, rt = np.loadtxt('rt.txt', delimiter=';', unpack=True)
+##
+##
+
+##
+## extracting eye data for each sentence (dictionary)
+ind = 0
+raw_sent = {}
+data = {}
+lensent = 1
+st_rt = st_rt.tolist()
+rt = rt.tolist()
+
+for i in st_rt[1:]:
+    data['x'] = []
+    data['y'] = []
+    data['st'] = []
+    while i != st[ind]:
+        data['x'].append(x[ind])
+        data['y'].append(y[ind])
+        data['st'].append(st[ind])
+        ind += 1
+    raw_sent['sent_' + str(lensent)] = data.copy()
+    data.clear()
+    lensent += 1
+    if i == st_rt[-1]:
+        data['x'] = []
+        data['y'] = []
+        data['st'] = []
+        while ind < len(st):
+            data['x'].append(x[ind])
+            data['y'].append(y[ind])
+            data['st'].append(st[ind])
+            ind += 1
+            if x[ind + 1] - x[ind] > 600 and x[ind] > 1200 and x[ind] < 1800:
+                st_rt.append(st[ind])
+                rt.append(1.0)
+                break
+        raw_sent['sent_' + str(lensent)] = data.copy()
+        data.clear()
+##
+##
+
+## extracting RT and time for each sentence (list)
+
+time_key = []
+time_eye = []
+
+for i in range(1, len(raw_sent)):
+    time_eye.append(raw_sent['sent_' + str(i)]['st'][-1] - raw_sent['sent_' + str(i)]['st'][0])
+for i in range(0, len(st_rt) - 1):
+    if rt[i + 1] == 1 and rt[i] == 0:
+        time_key.append([st_rt[i + 1] - st_rt[i], 0])
+    else:
+        time_key.append([st_rt[i + 1] - st_rt[i], 1])
 
 
-while not it.finished:
-    if it_1.finished==False:
-        if it[0]==it_1[0]:
-            print(it_1[0])
+        ##
+        ## Average Eye data for n subjects
 
-            #print(it.index)
-            index_1.append(it.index)
-            it_1.iternext()
-    if it_0.finished==False:
-        if it[0]==it_0[0]:
-            index_0.append(it.index)
-            it_0.iternext()
 
-    it.iternext()
-    if it_1.finished and it_0.finished:
-        break
+        # st=np.array(raw_sent['sent_98']['st'])
+        # x=np.array(raw_sent['sent_98']['x'])
+        # y=np.array(raw_sent['sent_98']['y'])
 
-print(index_0, len(index_0))
-print(index_1, len(index_1))
-
-print(x[0:index_1[0]+1])
-
-st_=[]
-x_=[]
-y_=[]
-rt_=[]
-
-# for line in eye_f:
-#     col=line.split(';')
-#     col=[c.strip() for c in col]
-#     st_.append(float(col[0]))
-#     x_.append(float(col[1]))
-#     y_.append(float(col[2]))
-
-    
-# st=np.array(st_)
-# x=np.array(x_)
-# y=np.array(y_)
-
-# Sfix,Efix= fixation_detection(x,y,st)
-# Ssac,Esac= saccade_detection(x,y,st)
-# scrsize=(2560,1440)
-# DIR = (os.path.dirname(__file__)+"capture.png")
+        # Sfix,Efix= fixation_detection(x,y,st)
+        # Ssac,Esac= saccade_detection(x,y,st)
+        # scrsize=(2560,1440)
+        # DIR = os.path.join(os.path.dirname(__file__), "images", "94.png")
+        #
+        # draw_raw(x,y,scrsize, imagefile='original.jpg', savefilename=os.path.join(os.path.dirname(__file__),"raw_data"))
+        #
+        # draw_fixations(Efix, scrsize, imagefile='original.png',durationsize=True, durationcolour=False,
+        # alpha=0.5,savefilename=os.path.join(os.path.dirname(__file__),"fixations"))
 #
-# draw_raw(x,y,scrsize, imagefile='original.jpg', savefilename=os.path.join(os.path.dirname(__file__),"raw_data"))
-#
-# draw_fixations(Efix, scrsize, imagefile='original.jpg',durationsize=True, durationcolour=False,
-#                alpha=0.5,savefilename=os.path.join(os.path.dirname(__file__),"fixations"))
-#
-# draw_scanpath(Efix, Esac, scrsize, imagefile='original.jpg', alpha=0.5,
+# draw_scanpath(Efix, Esac, scrsize, imagefile='99.png', alpha=0.5,
 #               savefilename=os.path.join(os.path.dirname(__file__),"scanpath"))
 #
 #
-# draw_heatmap(Efix, scrsize,imagefile='original.jpg',durationweight=True,alpha=0.5,savefilename=os.path.join(os.path.dirname(__file__),"heatmap"))
+# draw_heatmap(Efix, scrsize,imagefile='99.png',durationweight=True,alpha=0.5,savefilename=os.path.join(os.path.dirname(__file__),"heatmap"))
