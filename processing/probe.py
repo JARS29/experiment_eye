@@ -63,14 +63,23 @@ def extracting_eye(st, x, y, st_rt, rt):
 
 #
 ## extracting RT and time for each sentence (list)
-def extracting_time(raw_sent, rt, st_rt):
-    time_key = []
-    time_eye = []
+def extracting_time(subjects, condition):
 
-    for i in range(1, len(raw_sent) + 1):
-        y = (raw_sent['sent_' + str(i)]['st'][-1] - raw_sent['sent_' + str(i)]['st'][0]) / 1000
-        time_eye.append(round(y, 2))
 
+    times={}
+    dir = os.path.dirname('__file__')
+    for i in subjects:
+        filename_eye = os.path.join(dir, 'data_exp', i, condition, 'raw_eye.txt')
+        filename_rt = os.path.join(dir, 'data_exp', i, condition, 'rt.txt')
+        st, x, y = import_eyedata(filename_eye)
+        st_rt, rt = import_rtdata(filename_rt)
+        raw = extracting_eye(st, x, y, st_rt, rt)
+        time_key = []
+        time_eye = []
+        for i in range(1, len(raw_sent) + 1):
+            y = (raw_sent['sent_' + str(i)]['st'][-1] - raw_sent['sent_' + str(i)]['st'][0]) / 1000
+            time_eye.append(round(y, 2))
+        times['time_eye']= asdasdqawudegaiuwdawidhawoihdoaiwdhawoid
     for i in range(0, len(st_rt)):
         if rt[i] == 1 and rt[i - 1] == 0:
             y = ((st_rt[i] - st_rt[i - 1]) / 1000)
@@ -78,7 +87,7 @@ def extracting_time(raw_sent, rt, st_rt):
         else:
             y = ((st_rt[i] - st_rt[i - 1]) / 1000)
             time_key.append([round(y, 2), 1])
-
+    return time_eye, time_key
 
 #
 ## Average Eye data for n subjects
@@ -94,7 +103,6 @@ def average_subjects(subjects, condition):  # condition= va or vs
         raw = extracting_eye(st, x, y, st_rt, rt)
         usr['raw_data_' + i] = raw.copy()
     return usr
-
 
 #
 ## Ploting
@@ -124,5 +132,5 @@ def visualization_eye(raw_sent, usr, condition, sent, type):  # Type: 0=fixation
 
 
 
-subjects = ['007']
+subjects = ['004']
 raw_sent = average_subjects(subjects, 'va')
