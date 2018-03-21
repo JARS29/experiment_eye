@@ -6,10 +6,9 @@ from gazeplotter import draw_fixations, draw_heatmap, draw_scanpath, draw_raw
 
 
 #######################################
-##
+
+#
 ## Load data (raw and rt)
-
-
 def import_eyedata(filename):
     st, x, y = np.loadtxt(filename, delimiter=';', unpack=True)
     return st, x, y
@@ -22,9 +21,8 @@ def import_rtdata(filename):
     return st_rt, rt
 
 
-##
+#
 ## extracting eye data for each sentence (dictionary)
-
 def extracting_eye(st, x, y, st_rt, rt):
     ind = 0
     raw_sent = {}
@@ -47,7 +45,8 @@ def extracting_eye(st, x, y, st_rt, rt):
             data['x'] = []
             data['y'] = []
             data['st'] = []
-            print i, ind
+            print
+            i, ind
             while ind < len(st):
                 data['x'].append(x[ind])
                 data['y'].append(y[ind])
@@ -62,11 +61,8 @@ def extracting_eye(st, x, y, st_rt, rt):
     return raw_sent
 
 
-##
-##
-
+#
 ## extracting RT and time for each sentence (list)
-
 def extracting_time(raw_sent, rt, st_rt):
     time_key = []
     time_eye = []
@@ -83,50 +79,50 @@ def extracting_time(raw_sent, rt, st_rt):
             y = ((st_rt[i] - st_rt[i - 1]) / 1000)
             time_key.append([round(y, 2), 1])
 
+
 #
 ## Average Eye data for n subjects
-
-def average_subjects(subjects, condition):  #condition= va or vs
-    n_subj= len(subjects)
-    usr={}
-    dir=os.path.dirname('__file__')
+def average_subjects(subjects, condition):  # condition= va or vs
+    n_subj = len(subjects)
+    usr = {}
+    dir = os.path.dirname('__file__')
     for i in subjects:
-        filename_eye= os.path.join(dir, 'data_exp', i, condition , 'raw_eye.txt')
-        filename_rt= os.path.join(dir, 'data_exp', i, condition , 'rt.txt')
+        filename_eye = os.path.join(dir, 'data_exp', i, condition, 'raw_eye.txt')
+        filename_rt = os.path.join(dir, 'data_exp', i, condition, 'rt.txt')
         st, x, y = import_eyedata(filename_eye)
-        st_rt, rt =import_rtdata(filename_rt)
-        raw = extracting_eye(st,x,y,st_rt,rt)
-        usr['raw_data_'+i]=raw.copy()
+        st_rt, rt = import_rtdata(filename_rt)
+        raw = extracting_eye(st, x, y, st_rt, rt)
+        usr['raw_data_' + i] = raw.copy()
     return usr
-        
-subjects=['007']
-raw_sent=average_subjects(subjects, 'va')
-    
-    
 
 
-
-
-## Ploting (individual)
-
-
-
-st=np.array(raw_sent['raw_data_007']['sent_13']['st'])
-x=np.array(raw_sent['raw_data_007']['sent_13']['x'])
-y=np.array(raw_sent['raw_data_007']['sent_13']['y'])
-
-Sfix,Efix= fixation_detection(x,y,st)
-Ssac,Esac= saccade_detection(x,y,st)
-scrsize=(2560,1440)
-# DIR = os.path.join(os.path.dirname(__file__), "images", "94.png")
 #
+## Ploting
+def visualization_eye(raw_sent, usr, condition, sent, type):  # Type: 0=fixation, 1=scanpath, 2=heatmap
+
+    dir = os.path.dirname('__file__')
+    st = np.array(raw_sent['raw_data_' + usr]['sent_' + sent]['st'])
+    x = np.array(raw_sent['raw_data_' + usr]['sent_' + sent]['x'])
+    y = np.array(raw_sent['raw_data_' + usr]['sent_' + sent]['y'])
+
+    Sfix, Efix = fixation_detection(x, y, st)
+    Ssac, Esac = saccade_detection(x, y, st)
+    scrsize = (2560, 1440)
+    dirimage = os.path.join(dir, 'data_exp', usr, condition, 'images', sent + '.png')
+    if type == 0:
+        draw_fixations(Efix, scrsize, imagefile=dirimage, durationsize=True, durationcolour=False, alpha=0.5,
+                       savefilename=os.path.join(dir, usr + '_' + condition + '_' + sent + "_fixations"))
+    elif type == 1:
+        draw_scanpath(Efix, Esac, scrsize, imagefile=dirimage, alpha=0.5,
+                      savefilename=os.path.join(dir, usr + '_' + condition + '_' + sent + "_scanpath"))
+    elif type == 2:
+        draw_heatmap(Efix, scrsize, imagefile=dirimage, durationweight=True, alpha=0.5,
+                     savefilename=os.path.join(dir, usr + '_' + condition + '_' + sent + "_heatmap"))
+
+
 # draw_raw(x,y,scrsize, imagefile='original.jpg', savefilename=os.path.join(os.path.dirname(__file__),"raw_data"))
-#
-# draw_fixations(Efix, scrsize, imagefile='original.png',durationsize=True, durationcolour=False,
-# alpha=0.5,savefilename=os.path.join(os.path.dirname(__file__),"fixations"))
-#
-draw_scanpath(Efix, Esac, scrsize, imagefile='13.png', alpha=0.5,
-               savefilename=os.path.join(os.path.dirname(__file__),"scanpath"))
-#
-#
-draw_heatmap(Efix, scrsize,imagefile='13.png',durationweight=True,alpha=0.5,savefilename=os.path.join(os.path.dirname(__file__),"heatmap"))
+
+
+
+subjects = ['007']
+raw_sent = average_subjects(subjects, 'va')
