@@ -99,7 +99,8 @@ def visualization_eye(raw_sent, usr, condition, sent, type):  # Type: 0=fixation
     Sfix, Efix = fixation_detection(x, y, st)
     Ssac, Esac = saccade_detection(x, y, st)
     scrsize = (2560, 1440)
-    print Esac
+    print Efix
+    print len(Efix)
     dirimage = os.path.join(dir, 'data_exp', usr, condition, 'images', sent + '.png')
     if type == 0:
         draw_fixations(Efix, scrsize, imagefile=dirimage, durationsize=True, durationcolour=False, alpha=0.5,
@@ -116,8 +117,19 @@ def visualization_eye(raw_sent, usr, condition, sent, type):  # Type: 0=fixation
 
 
 
-subjects = ['005']
+subjects = ['013']
 condition= ['vs', 'va']
 raw_sent = extract_data_subjects(subjects, condition)
-times = extract_data_subjects(subjects, condition, 1)
+#times = extract_data_subjects(subjects, condition, 1)
+
+visualization_eye(raw_sent, '013', 'vs', '99', 1)
+visualization_eye(raw_sent, '013', 'va', '99', 1)
+#visualization_eye(raw_sent, '010', 'vs', '40', 2)
+
+# visualization_eye(raw_sent, '010', 'vs', '2', 1)
+# visualization_eye(raw_sent, '010', 'vs', '2', 2)
+#
+# visualization_eye(raw_sent, '010', 'vs', '70', 1)
+# visualization_eye(raw_sent, '010', 'vs', '70', 2)
+
 
