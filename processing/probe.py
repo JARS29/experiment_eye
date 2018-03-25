@@ -55,12 +55,16 @@ def extracting_eye(st, x, y, st_rt, rt):
 
 #
 ## Average Eye data for n subjects
-def extract_data_subjects(subjects, condition, time_sent=0):  # both lists of subjects and conditions  must be string, sent= 0, time =1
+def extract_data_subjects(subjects, condition, type=0):  # both lists of subjects and conditions  must be string,
+    # type (sentence data) = 0, type (eye and key time) =1,  type (fixations and saccades data) = 2
     usr_sent = {}
     usr_time={}
     cond= {}
     times = {}
-    dir = os.path.dirname('__file__')
+    usr_eye_data={}
+    eye_data={}
+    #dir = os.path.dirname('__file__')
+    dir= 'C:\Users\JARS\Dropbox'
     for i in subjects:
         for h in condition:
             filename_eye = os.path.join(dir, 'data_exp', i, h, 'raw_eye.txt')
@@ -69,38 +73,51 @@ def extract_data_subjects(subjects, condition, time_sent=0):  # both lists of su
             st_rt, rt = import_rtdata(filename_rt)
             raw = extracting_eye(st, x, y, st_rt, rt)
             cond[h] = raw.copy()
-            if time_sent == 1:
+            if type == 1:
                 times[h] = {}
                 times[h]['time_eye']=[]
                 times[h]['time_key']=[]
-                for k in range(1, len(raw) + 1):
-                    z = np.sum(np.diff(raw['sent_' + str(k)]['st']))/1000
+                for k in raw:
+                    z = np.sum(np.diff(raw[k]['st']))/1000
                     times[h]['time_eye'].append(np.round(z, 2))
                 z = np.diff(st_rt) / 1000
                 times[h]['time_key'].append(np.round(z,2))
+            elif type ==2:
+                eye_data[h]={}
+                for k in raw:
+                    eye_data[h][k]={}
+                    eye_data[h][k]['fixations'] = []
+                    eye_data[h][k]['saccades'] = []
+                    st = np.array(raw[k]['st'])
+                    x = np.array(raw[k]['x'])
+                    y = np.array(raw[k]['y'])
+                    Sfix, Efix = fixation_detection(x, y, st)
+                    Ssac, Esac = saccade_detection(x, y, st)
+                    eye_data[h][k]['fixations']=Efix
+                    eye_data[h][k]['saccades'] = Esac
+        usr_eye_data[i]=eye_data.copy()
+        eye_data.clear()
         usr_time[i]=times.copy()
         times.clear()
         usr_sent[i]=cond.copy()
         cond.clear()
-    if time_sent:
-        return usr_time
-    else:
+    if type==0:
         return usr_sent
+    elif type==1:
+        return usr_time
+    elif type==2:
+        return usr_eye_data
 
 #
 ## Ploting
-def visualization_eye(raw_sent, usr, condition, sent, type):  # Type: 0=fixation, 1=scanpath, 2=heatmap
+def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Type: 0=fixation, 1=scanpath, 2=heatmap
 
     dir = os.path.dirname('__file__')
-    st = np.array(raw_sent[usr][condition]['sent_' + sent]['st'])
-    x = np.array(raw_sent[usr][condition]['sent_' + sent]['x'])
-    y = np.array(raw_sent[usr][condition]['sent_' + sent]['y'])
-
-    Sfix, Efix = fixation_detection(x, y, st)
-    Ssac, Esac = saccade_detection(x, y, st)
+    Efix= raw_sent[usr][condition]['sent_'+sent]['fixations']
+    Esac= raw_sent[usr][condition]['sent_'+sent]['saccades']
     scrsize = (2560, 1440)
-    print Efix
-    print len(Efix)
+    #print (Efix)
+    #print (len(Efix))
     dirimage = os.path.join(dir, 'data_exp', usr, condition, 'images', sent + '.png')
     if type == 0:
         draw_fixations(Efix, scrsize, imagefile=dirimage, durationsize=True, durationcolour=False, alpha=0.5,
@@ -117,13 +134,16 @@ def visualization_eye(raw_sent, usr, condition, sent, type):  # Type: 0=fixation
 
 
 
-subjects = ['013']
+subjects = ['014']
 condition= ['vs', 'va']
 raw_sent = extract_data_subjects(subjects, condition)
-#times = extract_data_subjects(subjects, condition, 1)
+times = extract_data_subjects(subjects, condition, 1)
+eye_data = extract_data_subjects(subjects, condition, 2)
 
-visualization_eye(raw_sent, '013', 'vs', '99', 1)
-visualization_eye(raw_sent, '013', 'va', '99', 1)
+visualization_eye(eye_data, '014', 'vs', '99', 1)
+#visualization_eye(raw_sent, '014', 'va', '99', 1)
+#visualization_eye(raw_sent, '014', 'vs', '99', 2)
+#visualization_eye(raw_sent, '014', 'va', '99', 2)
 #visualization_eye(raw_sent, '010', 'vs', '40', 2)
 
 # visualization_eye(raw_sent, '010', 'vs', '2', 1)
