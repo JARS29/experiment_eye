@@ -63,12 +63,12 @@ def extract_data_subjects(subjects, condition, type=0):  # both lists of subject
     times = {}
     usr_eye_data={}
     eye_data={}
-    #dir = os.path.dirname('__file__')
-    dir= 'C:\Users\JARS\Dropbox'
+    dir = os.path.dirname('__file__')
+    #dir= 'C:\Users\JARS\Dropbox'
     for i in subjects:
         for h in condition:
-            filename_eye = os.path.join(dir, 'data_exp', i, h, 'raw_eye.txt')
-            filename_rt = os.path.join(dir, 'data_exp', i, h, 'rt.txt')
+            filename_eye = os.path.join(dir, 'data_exp', str(i), str(h), 'raw_eye.txt')
+            filename_rt = os.path.join(dir, 'data_exp', str(i), str(h), 'rt.txt')
             st, x, y = import_eyedata(filename_eye)
             st_rt, rt = import_rtdata(filename_rt)
             raw = extracting_eye(st, x, y, st_rt, rt)
@@ -76,12 +76,18 @@ def extract_data_subjects(subjects, condition, type=0):  # both lists of subject
             if type == 1:
                 times[h] = {}
                 times[h]['time_eye']=[]
+                times[h]['time_wait']=[]
                 times[h]['time_key']=[]
-                for k in raw:
-                    z = np.sum(np.diff(raw[k]['st']))/1000
-                    times[h]['time_eye'].append(np.round(z, 2))
-                z = np.diff(st_rt) / 1000
-                times[h]['time_key'].append(np.round(z,2))
+                for k in range(0, len(rt) - 1):
+                    w = (st_rt[k + 1] - st_rt[k]) / 1000
+                    z = ((raw['sent_' + str(k+1)]['st'][-1] - raw['sent_' + str(k+1)]['st'][0]) / 1000)
+                    if rt[k] == 0 and rt[k + 1] == 1:
+                        times[h]['time_wait'].append(np.round(w,2))
+                    else:
+                        times[h]['time_key'].append(np.round(w, 2))
+                        times[h]['time_eye'].append(np.round(z, 2))
+
+
             elif type ==2:
                 eye_data[h]={}
                 for k in raw:
@@ -134,13 +140,13 @@ def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Type: 0=fixati
 
 
 
-subjects = ['014']
+subjects = ['004']
 condition= ['vs', 'va']
-raw_sent = extract_data_subjects(subjects, condition)
+#raw_sent = extract_data_subjects(subjects, condition)
 times = extract_data_subjects(subjects, condition, 1)
-eye_data = extract_data_subjects(subjects, condition, 2)
+#eye_data = extract_data_subjects(subjects, condition, 2)
 
-visualization_eye(eye_data, '014', 'vs', '99', 1)
+#visualization_eye(eye_data, '014', 'vs', '99', 1)
 #visualization_eye(raw_sent, '014', 'va', '99', 1)
 #visualization_eye(raw_sent, '014', 'vs', '99', 2)
 #visualization_eye(raw_sent, '014', 'va', '99', 2)
