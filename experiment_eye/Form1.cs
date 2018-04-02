@@ -25,7 +25,9 @@ namespace experiment_eye
         private static int press_key = 0;
         private static int count_chunk = 0;
         private static int[] chunks = new int[0];
-        private static string[] sentences = File.ReadAllLines(@"C:test1.txt", Encoding.GetEncoding("iso-8859-1"));
+        //private static string[] sentences = File.ReadAllLines(@"C:example.txt", Encoding.GetEncoding("iso-8859-1"));
+        //private static string[] sentences = File.ReadAllLines(@"C:bloco1.txt", Encoding.GetEncoding("iso-8859-1"));
+        private static string[] sentences = File.ReadAllLines(@"C:bloco2.txt", Encoding.GetEncoding("iso-8859-1"));
         static Random _random = new Random();
         private static int count_key = 0;
         public static double time_st = 0;
@@ -38,9 +40,10 @@ namespace experiment_eye
         public static Bitmap img = new Bitmap(2560, 1440);
         public static Graphics g = Graphics.FromImage(img);
         public static string path = @"C:\Users\Inf-CG\Documents\images\";
+        public static int count_image = 0;
         public Form1()
         {
-           
+
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             //this.Size = img.Size;
@@ -57,6 +60,7 @@ namespace experiment_eye
         static void Shuffle<T>(T[] array)
         {
             int n = array.Length;
+            int m = chunks.Length;
             for (int i = 0; i < n; i++)
             {
                 int r = i + _random.Next(n - i);
@@ -64,9 +68,12 @@ namespace experiment_eye
                 //Console.WriteLine(r.ToString() + "   " + array[r]);
                 array[r] = array[i];
                 array[i] = t;
-                using (StreamWriter res = File.AppendText(@"C:\Users\Inf-CG\Google Drive\Bibliography- Span Test\sente.txt"))
+                if (m > 0)
                 {
-                    res.WriteLine(array[i] + "  " + r.ToString());
+                    using (StreamWriter res = File.AppendText(@"C:\Users\Inf-CG\Google Drive\Bibliography- Span Test\sente.txt"))
+                    {
+                        res.WriteLine(array[i] + ";");
+                    }
                 }
             }
         }
@@ -85,7 +92,7 @@ namespace experiment_eye
                 foreach (int s in size_s)
                 {
                     temp.Add(s);
-                    using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\order.txt"))
+                    using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Google Drive\Bibliography- Span Test\order.txt"))
                     {
                         sw.WriteLine(s.ToString());
                         //Console.WriteLine(s.ToString() + "  " + i.ToString() + "   " + (m/n).ToString());
@@ -132,18 +139,18 @@ namespace experiment_eye
             WindowState = FormWindowState.Maximized;
             text.Font = new Font("Arial", 50, FontStyle.Bold);
             Shuffle(sentences);
-            text.Text = "Pressionar a tecla 'espaço' para começar." ;
+            text.Text = "Pressionar a tecla 'espaço' para começar.";
             text.Size = this.Size;
             text.TextAlign = ContentAlignment.MiddleCenter;
-       
-           
+
+
             //PictureBox pbx = new PictureBox();
             //pbx.Image = img;
             //pbx.Size = this.Size;
             this.Controls.Add(text);
             timer.Tick += new EventHandler(timer_Tick);
             if (bandtime)
-                timer.Interval = 7000;
+                timer.Interval = 8000;
             else
                 timer.Interval = 1000000;
 
@@ -165,13 +172,14 @@ namespace experiment_eye
 
             if (e.KeyChar == (char)Keys.Space)
             {
-                g.CopyFromScreen(0, 0, 0, 0, img.Size);
-                g.DrawImage(img, 0, 0, 0, 0);
+
                 band = true;
                 timer.Enabled = true;
                 bandtime = true;
                 timer.Stop();
                 timer.Start();
+
+
                 if (count_key < sentences.Length)
                 {
                     //Console.WriteLine(count_chunk.ToString());
@@ -184,41 +192,41 @@ namespace experiment_eye
                         count_key--;
                         using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
                         {
-                            sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "0" + ";" + (time_st-init_st).ToString());
+                            sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "0");
                         }
-                        init_st = time_st;
                         timer.Stop();
                         timer.Enabled = false;
                         bandtime = false;
                     }
                     else if (press_key < chunks[count_chunk])
                     {
-                        img.Save(path + @count_key.ToString() + @".png");
                         text.Text = sentences[count_key];
                         press_key++;
                         using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
                         {
-                            sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "1" + ";" + (time_st - init_st).ToString());
+                            sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "1");
                         }
-                        init_st = time_st;
-
 
                     }
 
-                    //Console.WriteLine(press_key.ToString() + "  " + chunks[count_chunk].ToString() + "  " + count_key.ToString() + "  " + count_chunk.ToString());
                 }
                 else
                 {
                     text.Text = "+";
                     fg++;
+                    timer.Stop();
+                    timer.Enabled = false;
+                    bandtime = false;
                     if (fg == 2)
                     {
                         this.Close();
                         DisableConnectionWithTobiiEngine();
                     }
-
-                 
                 }
+                g.CopyFromScreen(0, 0, 0, 0, img.Size);
+                g.DrawImage(img, 0, 0, 0, 0);
+                img.Save(path + @count_image.ToString() + @".png");
+                count_image++;
                 count_key++;
             }
             e.Handled = true;
@@ -227,10 +235,9 @@ namespace experiment_eye
 
         void timer_Tick(object sender, EventArgs e)
         {
+
             if (count_key < sentences.Length)
             {
-                g.CopyFromScreen(0, 0, 0, 0, img.Size);
-                g.DrawImage(img, 0, 0, 0, 0);
 
                 if (press_key == chunks[count_chunk])
                 {
@@ -238,48 +245,43 @@ namespace experiment_eye
                     press_key = 0;
                     count_chunk++;
                     count_key--;
-                    using (StreamWriter sw = File.AppendText(@"C:rt.txt"))
+                    using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
                     {
-                        sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "0" + ";" + (time_st - init_st).ToString());
+                        sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "0");
                     }
                     timer.Stop();
                     timer.Enabled = false;
                     bandtime = false;
-                    init_st = time_st;
-
                 }
                 else if (press_key < chunks[count_chunk])
                 {
-                    img.Save(path + @count_key.ToString() + @".png");
-
                     text.Text = sentences[count_key];
                     press_key++;
-                    using (StreamWriter sw = File.AppendText(@"C:rt.txt"))
+                    using (StreamWriter sw = File.AppendText(@"C:\Users\Inf-CG\Documents\rt.txt"))
                     {
-                        sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "1" + ";" + (time_st - init_st).ToString());
+                        sw.WriteLine(time_st.ToString("0.#").Replace(",", ".") + ";" + "1");
                     }
-                    init_st = time_st;
                 }
 
-                // Console.WriteLine(press_key.ToString() + "  " + chunks[count_chunk].ToString() + "  " + count_key.ToString() + "  " + count_chunk.ToString());
             }
             else
             {
                 text.Text = "+";
                 fg++;
+                timer.Stop();
+                timer.Enabled = false;
+                bandtime = false;
                 if (fg == 2)
                 {
                     this.Close();
                     DisableConnectionWithTobiiEngine();
                 }
             }
+            g.CopyFromScreen(0, 0, 0, 0, img.Size);
+            g.DrawImage(img, 0, 0, 0, 0);
+            img.Save(path + @count_image.ToString() + @".png");
+            count_image++;
             count_key++;
-            ;// timer.Stop();
-            //timer.Enabled = true;
-            //this.Close();
-            //DisableConnectionWithTobiiEngine();
-            // ind++;
-            //text.Text = d[ind
         }
     }
 }
