@@ -95,15 +95,18 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                         eye_data[h][j+1]['saccades'] = []
                         eye_data[h][j+1]['dur_fix'] = []
                         eye_data[h][j+1]['dur_sacc']=[]
+                        eye_data[h][j+1]['amplitude'] = []
                         st = np.array(raw[j+1]['st'])
                         x = np.array(raw[j+1]['x'])
                         y = np.array(raw[j+1]['y'])
                         Sfix, Efix = fixation_detection(x, y, st)
-                        Ssac, Esac = saccade_detection(x, y, st)
+                        Ssac, Esac, ampl = saccade_detection(x, y, st)
                         eye_data[h][j+1]['fixations']=Efix
                         eye_data[h][j+1]['saccades'] = Esac
                         eye_data[h][j+1]['dur_fix'] = Sfix
                         eye_data[h][j+1]['dur_sacc']= Ssac
+                        eye_data[h][j+1]['amplitude'] = ampl
+
             elif type == 3: #extracting eye data for all images (sentences + wait time)
                 eye_data[h] = {}
                 for k in raw:
@@ -114,7 +117,7 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                     x = np.array(raw[k]['x'])
                     y = np.array(raw[k]['y'])
                     Sfix, Efix = fixation_detection(x, y, st)
-                    Ssac, Esac = saccade_detection(x, y, st)
+                    Ssac, Esac, ampl = saccade_detection(x, y, st)
                     eye_data[h][k]['fixations'] = Efix
                     eye_data[h][k]['saccades'] = Esac
         usr_eye_data[i]=eye_data.copy()
@@ -185,6 +188,10 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
             for j in data[subject][condition]:
                 fix=data[subject][condition][j]['dur_fix']
                 sacc=data[subject][condition][j]['dur_sacc']
+                if fix==[]:
+                    fix=[[0,0,0]]
+                if sacc==[]:
+                    sacc=[[0,0,0]]
                 for i in fix:
                     nfw.writerow([subject, condition, j, 'f'] + i)
                 for i in sacc:
