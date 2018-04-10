@@ -184,24 +184,25 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
 
         with open('eye_data_' + subject + '_' + condition + '.csv', 'w') as newFile:
             nfw = csv.writer(newFile, delimiter=';')
-            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration'])
+            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration', 'amplitude', 'saccade'])
             for j in data[subject][condition]:
                 fix=data[subject][condition][j]['dur_fix']
                 sacc=data[subject][condition][j]['dur_sacc']
+                ampl=data[subject][condition][j]['amplitude']
                 if fix==[]:
                     fix=[[0,0,0]]
                 if sacc==[]:
                     sacc=[[0,0,0]]
                 for i in fix:
-                    nfw.writerow([subject, condition, j, 'f'] + i)
-                for i in sacc:
-                    nfw.writerow([subject, condition, j, 's'] + i)
+                    nfw.writerow([subject, condition, j, 'f'] + i + ['0','0'])
+                for i,k in sacc, ampl:
+                    nfw.writerow([subject, condition, j, 's'] + i + k)
 
 
 
-subjects = ['002','003','004','005','006','007','009','010',
-            '011','012','013','014','015','016','017','018',
-            '019','020','021','022','023','024','025','026','027']
+subjects = ['002']#,'003','004','005','006','007','009','010',
+            #'011','012','013','014','015','016','017','018',
+            #'019','020','021','022','023','024','025','026','027']
 condition= [ 'vs', 'va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
