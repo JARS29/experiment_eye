@@ -58,8 +58,8 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
     times = {}
     usr_eye_data={}
     eye_data={}
-    #dir= 'C:\Users\JARS\Dropbox'
-    dir= '/home/jars/Dropbox'
+    dir= 'C:\Users\JARS\Dropbox'
+    #dir= '/home/jars/Dropbox'
     for i in subjects:
         for h in condition:
             filename_eye = os.path.join(dir, 'data_exp', str(i), str(h), 'raw_eye.txt')
@@ -134,7 +134,8 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
         return usr_eye_data
 
 def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Export the heapmaps and scanpaths. Type: 0=fixation, 1=scanpath, 2=heatmap
-    dir='/home/jars/Dropbox/'
+    #dir='/home/jars/Dropbox/'
+    dir= 'C:\Users\JARS\Dropbox'
     #dir = os.path.dirname('__file__')
     dir_s='data_exp/images'
     Efix= raw_sent[usr][condition][sent]['fixations']
@@ -158,8 +159,8 @@ def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Export the hea
                      savefilename=os.path.join(dir,dir_s, condition, 'hm', usr, str(sent)))
 
 def writing_data(data, subject, condition, type): #creates the csv's for processing the results (statistics in R)
-    dir= '/home/jars/Dropbox'
-
+    #dir= '/home/jars/Dropbox'
+    dir= 'C:\Users\JARS\Dropbox'
     if type == 0: #extracting results from sente, order, times
         filename_ord = os.path.join(dir, 'data_exp', subject, condition, 'order.txt')
         filename_sen = os.path.join(dir, 'data_exp', subject, condition, 'sente.txt')
@@ -175,33 +176,34 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
         for i in range(len(tim_e)-len(tim_w)):
             tim_w.append(0)
         stack= np.stack((anw, word, idx,tim_e,tim_k,tim_w), axis=-1)
-        with open('time_data_' + subject + '_' + condition + '.csv', 'w') as newFile:
+        with open('time_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             newFileWriter = csv.writer(newFile, delimiter=';')
             newFileWriter.writerow(['answers','words','order','time_eye','time_key','time_wait'])
             for i in stack:
                 newFileWriter.writerow(i)
     elif type==1:  #extracting results from eye data (saccades and fixations)
 
-        with open('eye_data_' + subject + '_' + condition + '.csv', 'w') as newFile:
+        with open('eye_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             nfw = csv.writer(newFile, delimiter=';')
-            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration'])
+            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration', 'amplitude','saccade_type'])
             for j in data[subject][condition]:
                 fix=data[subject][condition][j]['dur_fix']
-                sacc=data[subject][condition][j]['dur_sacc']
+                sacc=np.hstack((data[subject][condition][j]['dur_sacc'],data[subject][condition][j]['amplitude']))
+                sacc=sacc.tolist()
                 if fix==[]:
                     fix=[[0,0,0]]
                 if sacc==[]:
                     sacc=[[0,0,0]]
                 for i in fix:
-                    nfw.writerow([subject, condition, j, 'f'] + i)
+                    nfw.writerow([subject, condition, j, 'f'] + i + ['0','0'])
                 for i in sacc:
                     nfw.writerow([subject, condition, j, 's'] + i)
 
 
 
-subjects = ['002','003','004','005','006','007','009','010',
-            '011','012','013','014','015','016','017','018',
-            '019','020','021','022','023','024','025','026','027']
+subjects = ['002']#,'003','004','005','006','007','009','010',
+            #'011','012','013','014','015','016','017','018',
+            #'019','020','021','022','023','024','025','026','027']
 condition= [ 'vs', 'va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
