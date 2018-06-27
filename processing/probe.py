@@ -49,7 +49,8 @@ def extracting_eye(st, x, y, st_rt, rt): #creates the dictionary of the raw data
 
 def extract_data_subjects(subjects, condition, type=0): #Extract the data for n number de subjects and condition (silently or aloudly)
     # both lists of subjects and conditions  must be string,
-    # type = 0 returns the sentence data (raw), type=1 returns the eye and rt time
+    # type = 0 returns the sentence data (raw),
+    # type = 1 returns the eye and rt (times),
     # type = 2 returns eye data (fixations and saccades) only for the sentences (without wait times),
     # type = 3 returns eye data (fixations and saccades) for all images (with wait times)
     usr_sent = {}
@@ -58,8 +59,14 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
     times = {}
     usr_eye_data={}
     eye_data={}
+    #Windows
     #dir= 'C:\Users\JARS\Dropbox'
-    dir= '/home/jars/Dropbox'
+
+    #LINUX
+    #dir= '/home/jars/Dropbox'
+
+    #PC LAB
+    dir = 'C:\Users\CG\Dropbox'
     for i in subjects:
         for h in condition:
             filename_eye = os.path.join(dir, 'data_exp', str(i), str(h), 'raw_eye.txt')
@@ -74,15 +81,15 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                 times[h]['time_wait']=[]
                 times[h]['time_key']=[]
                 for k in range(0, len(rt) - 1):
-                    w = (st_rt[k + 1] - st_rt[k]) / 1000
+                    w = (st_rt[k + 1] - st_rt[k])
 
-                    z = ((raw[k+1]['st'][-1] - raw[k+1]['st'][0]) / 1000)
+                    z = ((raw[k+1]['st'][-1] - raw[k+1]['st'][0]))
                     if rt[k] == 0 and rt[k + 1] == 1:
                         times[h]['time_wait'].append(str(np.round(w,2)).replace('.',','))
                     else:
                         times[h]['time_key'].append(str(np.round(w, 2)).replace('.',','))
                         times[h]['time_eye'].append(str(np.round(z, 2)).replace('.',','))
-                ult = (st[-1] - st_rt[-1])/1000
+                ult = (st[-1] - st_rt[-1])
                 times[h]['time_wait'].append(str(np.round(ult,2)).replace('.',','))
             elif type ==2: #extracting eye data for each sentence (80) Without wait
                 eye_data[h]={}
@@ -134,9 +141,22 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
         return usr_eye_data
 
 def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Export the heapmaps and scanpaths. Type: 0=fixation, 1=scanpath, 2=heatmap
-    dir='/home/jars/Dropbox/'
+    #Linux
+    #dir='/home/jars/Dropbox/'
+
+    #Windows - Laptop
+    #dir= 'C:\Users\JARS\Dropbox'
+
+    ##Windows - PC LAB
+    dir = 'C:\Users\CG\Dropbox'
+
+    #Default
     #dir = os.path.dirname('__file__')
-    dir_s='data_exp/images'
+
+    #PC Lab
+    dir_s=  'C:\Users\CG\Pictures\exp'
+
+    #dir_s='/home/jars/data_exp/images'
     Efix= raw_sent[usr][condition][sent]['fixations']
     Esac= raw_sent[usr][condition][sent]['saccades']
     scrsize = (2560, 1440)
@@ -147,18 +167,31 @@ def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Export the hea
         draw_fixations(Efix, scrsize, imagefile=dirimage, durationsize=True, durationcolour=False, alpha=0.5,
                        savefilename=os.path.join(dir, usr + '_' + condition + '_' + str(sent) + "_fixations"))
     elif type == 1:
-        if not os.path.exists(os.path.join(dir, dir_s,condition,'sp',usr)):
-            os.makedirs(os.path.join(dir, dir_s,condition,'sp',usr))
+        if not os.path.exists(os.path.join(dir_s,condition,'sp',usr)):
+            os.makedirs(os.path.join(dir_s,condition,'sp',usr))
         draw_scanpath(Efix, Esac, scrsize, imagefile=dirimage, alpha=0.5,
-                      savefilename=os.path.join(dir, dir_s, condition, 'sp', usr, str(sent)))
+                      savefilename=os.path.join( dir_s, condition, 'sp', usr, str(sent)))
     elif type == 2:
-        if not os.path.exists(os.path.join(dir, dir_s,condition,'hm',usr)):
-            os.makedirs(os.path.join(dir,dir_s, condition, 'hm',usr))
+        if not os.path.exists(os.path.join( dir_s,condition,'hm',usr)):
+            os.makedirs(os.path.join(dir_s, condition, 'hm',usr))
         draw_heatmap(Efix, scrsize, imagefile=dirimage, durationweight=True, alpha=0.5,
-                     savefilename=os.path.join(dir,dir_s, condition, 'hm', usr, str(sent)))
+                     savefilename=os.path.join(dir_s, condition, 'hm', usr, str(sent)))
 
 def writing_data(data, subject, condition, type): #creates the csv's for processing the results (statistics in R)
-    dir= '/home/jars/Dropbox'
+
+    # Linux
+    # dir='/home/jars/Dropbox/'
+
+    # Windows - Laptop
+    # dir= 'C:\Users\JARS\Dropbox'
+
+    # Default
+    # dir = os.path.dirname('__file__')
+
+    # PC Lab
+    #dir_s = 'C:\Users\CG\Pictures\exp\csv'
+
+    dir = 'C:\Users\CG\Dropbox'
 
     if type == 0: #extracting results from sente, order, times
         filename_ord = os.path.join(dir, 'data_exp', subject, condition, 'order.txt')
@@ -175,45 +208,48 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
         for i in range(len(tim_e)-len(tim_w)):
             tim_w.append(0)
         stack= np.stack((anw, word, idx,tim_e,tim_k,tim_w), axis=-1)
-        with open('time_data_' + subject + '_' + condition + '.csv', 'w') as newFile:
+        with open('time_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             newFileWriter = csv.writer(newFile, delimiter=';')
             newFileWriter.writerow(['answers','words','order','time_eye','time_key','time_wait'])
             for i in stack:
                 newFileWriter.writerow(i)
     elif type==1:  #extracting results from eye data (saccades and fixations)
 
-        with open('eye_data_' + subject + '_' + condition + '.csv', 'w') as newFile:
+        with open('eye_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             nfw = csv.writer(newFile, delimiter=';')
-            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration', 'amplitude', 'saccade'])
+            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration', 'amplitude'])
             for j in data[subject][condition]:
                 fix=data[subject][condition][j]['dur_fix']
-                sacc=data[subject][condition][j]['dur_sacc']
-                ampl=data[subject][condition][j]['amplitude']
+                sacc=np.hstack((data[subject][condition][j]['dur_sacc'],data[subject][condition][j]['amplitude']))
+                sacc=sacc.tolist()
                 if fix==[]:
                     fix=[[0,0,0]]
                 if sacc==[]:
                     sacc=[[0,0,0]]
                 for i in fix:
-                    nfw.writerow([subject, condition, j, 'f'] + i + ['0','0'])
-                for i,k in sacc, ampl:
-                    nfw.writerow([subject, condition, j, 's'] + i + k)
+                    nfw.writerow([subject, condition, j, 'f'] + i + ['0'])
+                for i in sacc:
+                    nfw.writerow([subject, condition, j, 's'] + i)
 
 
+subjects = ['004','005','006','007','009','010','011','012',
+'013','014','015','016','017','018','019','020','021','022','023','024','025','026','027']
+condition= ['va', 'vs']
 
-subjects = ['002']#,'003','004','005','006','007','009','010',
-            #'011','012','013','014','015','016','017','018',
-            #'019','020','021','022','023','024','025','026','027']
-condition= [ 'vs', 'va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
 #times = extract_data_subjects(subjects, condition, 1)
-eye_data = extract_data_subjects(subjects, condition, 2)
+eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number of subject']['condition'][number of sentence] (view keys for the options)
+#visualization_eye(eye_data,'003', 'va', 1, 1)
+#visualization_eye(eye_data,'003', 'vs', 1, 1)
+#visualization_eye(eye_data,'014', 'va', 6, 1)
+#visualization_eye(eye_data,'022', 'vs', 17, 1)
 
-for i in subjects:
-    for j in condition:
-        writing_data(eye_data,i,j,1)
-#          for k in eye_data[i][j]:
-# #             print k
-#             print (i, j, k)
-#             visualization_eye(eye_data,i, j, k, 2)
-#             visualization_eye(eye_data, i, j, k, 1)
+
+
+#for i in subjects:
+ #   for j in condition:
+        #writing_data(eye_data,i,j,1)
+  #      for k in eye_data[i][j]:
+   #         visualization_eye(eye_data,i, j, k, 1)
+    #        visualization_eye(eye_data, i, j, k, 2)
