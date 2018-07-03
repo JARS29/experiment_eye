@@ -108,6 +108,30 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                         y = np.array(raw[j+1]['y'])
                         Sfix, Efix = fixation_detection(x, y, st)
                         Ssac, Esac, ampl = saccade_detection(x, y, st)
+                        #Center wrong fixation detection
+                        if ((Efix[0][3]<= 1433 and Efix[0][3] >= 1109) and ( Efix[0][4] <= 760 and Efix[0][4] >= 610)): #center area
+                            Efix=Efix[1:]
+                            Esac=Esac[1:]
+                            Sfix=Sfix[1:]
+                            Ssac=Ssac[1:]
+                            ampl=ampl[1:]
+                        #Double reading and final word saccade detection
+                        for ind in range(len(Esac)):
+                            if((Esac[ind][3]>=954 and Esac[ind][3]<=1964) and (Esac[ind][4]>=730 and Esac[ind][4]<=850)): #final word area
+                                if(Esac[ind][5]>=18 and Esac[ind][5]<=918) and (Esac[ind][6]>=600 and Esac[ind][6]<=720):
+                                    if(Esac.index(Esac[ind])>3):
+                                        print([j+1, Esac[ind][3:]], Esac.index(Esac[ind]), len(Esac))
+                                        ix=len(Esac)-Esac.index(Esac[ind])
+                                        Esac = Esac[:-ix]
+                                        Efix = Efix[:-ix]
+                                        Sfix = Sfix[:-ix]
+                                        Ssac = Ssac[:-ix]
+                                        ampl = ampl[:-ix]
+                                        break
+                                    else:
+                                        pass #final word strategy
+
+
                         eye_data[h][j+1]['fixations']=Efix
                         eye_data[h][j+1]['saccades'] = Esac
                         eye_data[h][j+1]['dur_fix'] = Sfix
@@ -232,8 +256,8 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
                     nfw.writerow([subject, condition, j, 's'] + i)
 
 
-subjects = ['004','005','006','007','009','010','011','012',
-'013','014','015','016','017','018','019','020','021','022','023','024','025','026','027']
+subjects = ['004']#['004','005','006','007','009','010','011','012',
+#'013','014','015','016','017','018','019','020','021','022','023','024','025','026','027']
 condition= ['va', 'vs']
 
 
@@ -247,9 +271,12 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 
 
 
-#for i in subjects:
- #   for j in condition:
+for i in subjects:
+    for j in condition:
         #writing_data(eye_data,i,j,1)
-  #      for k in eye_data[i][j]:
-   #         visualization_eye(eye_data,i, j, k, 1)
+        for k in eye_data[i][j]:
+            visualization_eye(eye_data,i, j, k, 1)
     #        visualization_eye(eye_data, i, j, k, 2)
+
+
+####Center fixation filtering
