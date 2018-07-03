@@ -119,16 +119,19 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                         for ind in range(len(Esac)):
                             if((Esac[ind][3]>=954 and Esac[ind][3]<=1964) and (Esac[ind][4]>=730 and Esac[ind][4]<=850)): #final word area
                                 if(Esac[ind][5]>=18 and Esac[ind][5]<=918) and (Esac[ind][6]>=600 and Esac[ind][6]<=720):
-                                    if(Esac.index(Esac[ind])>3):
+                                    if(Esac.index(Esac[ind])>3): #Saccades index: After the third saccade
                                         print([j+1, Esac[ind][3:]], Esac.index(Esac[ind]), len(Esac))
                                         ix=len(Esac)-Esac.index(Esac[ind])
                                         Esac = Esac[:-ix]
-                                        Efix = Efix[:-ix]
+                                        if ix>1: #Holding the last fixation
+                                            Efix = Efix[:-ix]
                                         Sfix = Sfix[:-ix]
                                         Ssac = Ssac[:-ix]
                                         ampl = ampl[:-ix]
                                         break
-                                    else:
+                                    else: #Innitial saccades at final word
+                                        if(Efix[ind]>120):
+                                            print(["Fixation final word:  " , Efix[ind]])
                                         pass #final word strategy
 
 
