@@ -93,6 +93,7 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                 times[h]['time_wait'].append(str(np.round(ult,2)).replace('.',','))
             elif type ==2: #extracting eye data for each sentence (80) Without wait
                 eye_data[h]={}
+
                 for j in range(0, len(rt) - 1):
                     if rt[j] == 0 and rt[j + 1] == 1:
                         pass
@@ -108,32 +109,56 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                         y = np.array(raw[j+1]['y'])
                         Sfix, Efix = fixation_detection(x, y, st)
                         Ssac, Esac, ampl = saccade_detection(x, y, st)
+                        count_fix = 0
                         #Center wrong fixation detection
-                        if ((Efix[0][3]<= 1433 and Efix[0][3] >= 1109) and ( Efix[0][4] <= 760 and Efix[0][4] >= 610)): #center area
-                            Efix=Efix[1:]
-                            Esac=Esac[1:]
-                            Sfix=Sfix[1:]
-                            Ssac=Ssac[1:]
-                            ampl=ampl[1:]
-                        #Double reading and final word saccade detection
-                        for ind in range(len(Esac)):
-                            if((Esac[ind][3]>=954 and Esac[ind][3]<=1964) and (Esac[ind][4]>=730 and Esac[ind][4]<=850)): #final word area
-                                if(Esac[ind][5]>=18 and Esac[ind][5]<=918) and (Esac[ind][6]>=600 and Esac[ind][6]<=720):
-                                    if(Esac.index(Esac[ind])>3): #Saccades index: After the third saccade
-                                        print([j+1, Esac[ind][3:]], Esac.index(Esac[ind]), len(Esac))
-                                        ix=len(Esac)-Esac.index(Esac[ind])
-                                        Esac = Esac[:-ix]
-                                        if ix>1: #Holding the last fixation
-                                            Efix = Efix[:-ix]
-                                        Sfix = Sfix[:-ix]
-                                        Ssac = Ssac[:-ix]
-                                        ampl = ampl[:-ix]
-                                        break
-                                    else: #Innitial saccades at final word
-                                        if(Efix[ind]>120):
-                                            print(["Fixation final word:  " , Efix[ind]])
-                                        pass #final word strategy
+                        if len(Efix) is not 0:
+                            if (Efix[0][3]<= 1355 and Efix[0][3] >= 1130) and ( Efix[0][4] <= 760 and Efix[0][4] >= 596): #center area
+                                Efix=Efix[1:]
+                                Esac=Esac[1:]
+                                Sfix=Sfix[1:]
+                                Ssac=Ssac[1:]
+                                ampl=ampl[1:]
+                            #Double reading and final word saccade detection
+                            for ind in range(len(Esac)):
+                                if(Esac[ind][3]>=954 and Esac[ind][3]<=1964) and (Esac[ind][4]>=730 and Esac[ind][4]<=850): #final word area
+                                    if(Esac[ind][5]>=18 and Esac[ind][5]<=918) and (Esac[ind][6]>=600 and Esac[ind][6]<=720):
+                                        if(ind>=3): #Saccades index: After the third saccade
 
+                                            ix=len(Esac)-ind#  difference
+                                            if ix<6:
+                                                print(["Eliminating saccades: ", j + 1, Esac[ind][3:]], len(Esac), ind)
+                                                Esac = Esac[:-ix]
+                                                Ssac = Ssac[:-ix]
+                                                ampl = ampl[:-ix]
+                                                if ix > 2:  # Holding the last fixation
+                                                    Efix = Efix[:-ix]
+                                                    Sfix = Sfix[:-ix]
+                                            break
+                            for ind in range(len(Efix)):
+                                if (Efix[ind][3] <= 2200 and Efix[ind][3] >= 400) and (Efix[ind][4] <= 850 and Efix[ind][4] >= 730): #Innitial fixation at final word
+                                    if (ind <= 3):
+                                        if(Sfix[ind]>np.mean(Sfix)-np.std(Sfix)): #is it an aware fixation (longer than the mean of the fixations minus the standart deviation)
+                                            print(["Fixation final word:  ", j+1, Sfix[ind], np.mean(Sfix),  ind])
+                                            break
+                                        else:
+                                            if (ind>=1):  # were multiple short fixations?
+                                                print(["Fixation final word double:  ", j + 1, Sfix[ind], np.mean(Sfix), ind])
+                                                break
+                                            else: # Elimiting wrong fixations at the final word.
+                                                print(["Wrong final word fixation: ", j+1, Sfix[ind], np.mean(Sfix), ind])#final word strategy
+                                                Efix = Efix[1:]
+                                                Esac = Esac[1:]
+                                                Sfix = Sfix[1:]
+                                                Ssac = Ssac[1:]
+                                                ampl = ampl[1:]
+                                            break
+                                elif (Efix[ind][3] <= 1500 ) and (Efix[ind][4] <= 740 and Efix[ind][4] >= 590): #Innitial fixations at the beginning (normal reading)
+                                    if (ind <= len(Efix) / 2):
+                                        count_fix = count_fix+1
+                                        if((len(Efix)/2)-count_fix<=1):
+                                            print(['Normal reading: ', j+1, count_fix, len(Efix)/2])
+                                else:
+                                    print (['Annormal reading: ', j+1])
 
                         eye_data[h][j+1]['fixations']=Efix
                         eye_data[h][j+1]['saccades'] = Esac
@@ -259,12 +284,11 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
                     nfw.writerow([subject, condition, j, 's'] + i)
 
 
-subjects = ['004']#['004','005','006','007','009','010','011','012',
+subjects = ['005']#['004','005','006','007','009','010','011','012',
 #'013','014','015','016','017','018','019','020','021','022','023','024','025','026','027']
-condition= ['va', 'vs']
+condition= ['va']
 
-
-#raw_sent = extract_data_subjects(subjects, condition)
+raw_sent = extract_data_subjects(subjects, condition)
 #times = extract_data_subjects(subjects, condition, 1)
 eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number of subject']['condition'][number of sentence] (view keys for the options)
 #visualization_eye(eye_data,'003', 'va', 1, 1)
@@ -274,12 +298,12 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 
 
 
-for i in subjects:
-    for j in condition:
-        #writing_data(eye_data,i,j,1)
-        for k in eye_data[i][j]:
-            visualization_eye(eye_data,i, j, k, 1)
-    #        visualization_eye(eye_data, i, j, k, 2)
+# for i in subjects:
+#    for j in condition:
+#         #writing_data(eye_data,i,j,1)
+#        for k in eye_data[i][j]:
+#            visualization_eye(eye_data,i, j, k, 1)
+           #visualization_eye(eye_data, i, j, k, 2)
 
 
 ####Center fixation filtering

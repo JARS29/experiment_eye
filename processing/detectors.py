@@ -108,7 +108,7 @@ def blink_detection(x, y, time, missing=0.0, minlen=10):
     return Sblk, Eblk
 
 
-def fixation_detection(x, y, time, missing=0.0, maxdist=25, mindur=80):
+def fixation_detection(x, y, time, missing=0.0, maxdist=50, mindur=80):
 
     """Detects fixations, defined as consecutive samples with an inter-sample
     distance of less than a set amount of pixels (disregarding missing data)
