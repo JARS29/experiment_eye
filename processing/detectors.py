@@ -158,7 +158,7 @@ def fixation_detection(x, y, time, missing=0.0, maxdist=50, mindur=80):
             if time[i-1]-Sfix[-1][0] >= mindur:
                 if y[si] <= 825 and y[si]>=609:
                     Efix.append([Sfix[-1][0], time[i-1], time[i-1]-Sfix[-1][0], x[si], y[si]])
-                    dur.append((time[i-1]-Sfix[-1][0]))
+                    dur.append([numpy.around(time[i-1]-Sfix[-1][0], decimals=3)])
             # delete the last fixation start if it was too short
             else:
                 Sfix.pop(-1)
@@ -259,7 +259,7 @@ def saccade_detection(x, y, time, missing=0.0, minlen=20, maxvel=1385, maxacc=36
                     if (y[t1i] <= 825 and y[t1i]>= 609) and (y[t2i] <= 825 and y[t2i] >= 609):
 
                         Esac.append([t1, t2, dur, x[t1i], y[t1i], x[t2i], y[t2i]])
-                        dr.append((dur))
+                        dr.append([numpy.around(dur,decimals=3)])
                         amp=((numpy.diff([x[t1i],x[t2i]])**2 + numpy.diff([y[t1i],y[t2i]])**2)**0.5)
                         amp=amp.tolist()
                         if  x[t1i]<x[t2i]:

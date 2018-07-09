@@ -4,6 +4,16 @@ import csv
 from detectors import fixation_detection, saccade_detection
 from gazeplotter import draw_fixations, draw_heatmap, draw_scanpath
 
+###deleting reading file (due the append)
+try:
+    os.remove('reading_data_va.csv')
+except OSError:
+    pass
+try:
+    os.remove('reading_data_vs.csv')
+except OSError:
+    pass
+###
 
 def import_eyedata(filename): #import the eye-tracking data
     st, x, y = np.loadtxt(filename, delimiter=';', unpack=True)
@@ -93,7 +103,8 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                 times[h]['time_wait'].append(str(np.round(ult,2)).replace('.',','))
             elif type ==2: #extracting eye data for each sentence (80) Without wait
                 eye_data[h]={}
-                eye_data[h]['reading'] = np.zeros([100])
+                eye_data[h]['reading'] = []
+                eye_data[h]['reading'].append(i)
                 for j in range(0, len(rt) - 1):
                     if rt[j] == 0 and rt[j + 1] == 1:
                         pass
@@ -111,6 +122,7 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                         Ssac, Esac, ampl = saccade_detection(x, y, st)
                         count_fix = 0
                         #Center wrong fixation detection
+
                         if len(Efix) is not 0:
                             #If the three first saccades are in the center (due to the recall time)
                             if (Efix[0][3]<= 1355 and Efix[0][3] >= 1130) and ( Efix[0][4] <= 760 and Efix[0][4] >= 596): #center area
@@ -119,18 +131,38 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                                 Sfix=Sfix[1:]
                                 Ssac=Ssac[1:]
                                 ampl=ampl[1:]
+                        else:
+                            #print(["Wrong data A", j+1])
+                            eye_data[h]['reading'].append(0)
+                            continue
+
+                        if len(Efix) is not 0:
+                            #If the three first saccades are in the center (due to the recall time)
                             if (Efix[0][3]<= 1355 and Efix[0][3] >= 1130) and ( Efix[0][4] <= 760 and Efix[0][4] >= 596): #center area
                                 Efix=Efix[1:]
                                 Esac=Esac[1:]
                                 Sfix=Sfix[1:]
                                 Ssac=Ssac[1:]
                                 ampl=ampl[1:]
+                        else:
+                            #print(["Wrong data B", j+1])
+                            eye_data[h]['reading'].append(0)
+                            continue
+
+                        if len(Efix) is not 0:
+                            #If the three first saccades are in the center (due to the recall time)
                             if (Efix[0][3]<= 1355 and Efix[0][3] >= 1130) and ( Efix[0][4] <= 760 and Efix[0][4] >= 596): #center area
                                 Efix=Efix[1:]
                                 Esac=Esac[1:]
                                 Sfix=Sfix[1:]
                                 Ssac=Ssac[1:]
                                 ampl=ampl[1:]
+                        else:
+                            #print(["Wrong data C", j+1])
+                            eye_data[h]['reading'].append(0)
+                            continue
+
+                        if len(Efix) is not 0:
                             #Double reading and final word saccade detection
                             for ind in range(len(Esac)):
                                 if(Esac[ind][3]>=954 and Esac[ind][3]<=1964) and (Esac[ind][4]>=730 and Esac[ind][4]<=850): #final word area
@@ -147,17 +179,18 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                                                     Efix = Efix[:-ix]
                                                     Sfix = Sfix[:-ix]
                                             break
+
                             for ind in range(len(Efix)):
                                 if (Efix[ind][3] <= 2200 and Efix[ind][3] >= 400) and (Efix[ind][4] <= 850 and Efix[ind][4] >= 730): #Innitial fixation at final word
                                     if (ind <= 3):
                                         if(Sfix[ind]>np.mean(Sfix)-np.std(Sfix)): #is it an aware fixation (longer than the mean of the fixations minus the standart deviation)
                                             #print(["Fixation final word:  ", j+1, Sfix[ind], np.mean(Sfix),  ind])
-                                            eye_data[h]['reading'][j+1]=2
+                                            eye_data[h]['reading'].append(2)
                                             break
                                         else:
                                             if (ind>=1):  # were multiple short fixations?
                                                 #print(["Fixation final word double:  ", j + 1, Sfix[ind], np.mean(Sfix), ind])
-                                                eye_data[h]['reading'][j + 1] = 2
+                                                eye_data[h]['reading'].append(2)
 
                                                 break
                                             else: # Elimiting wrong fixations.
@@ -167,7 +200,7 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                                                 Sfix = Sfix[1:]
                                                 Ssac = Ssac[1:]
                                                 ampl = ampl[1:]
-                                                eye_data[h]['reading'][j + 1] = 4
+                                                eye_data[h]['reading'].append(4)
 
                                             break
                                 elif (Efix[ind][3] <= 1500 ) and (Efix[ind][4] <= 740 and Efix[ind][4] >= 590): #Innitial fixations at the beginning (normal reading)
@@ -175,16 +208,16 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                                         count_fix = count_fix+1
                                         if((len(Efix)/2)-count_fix<=1):
                                             #print(['Normal reading: ', j+1, count_fix, len(Efix)/2])
-                                            eye_data[h]['reading'][j + 1] = 1
+                                            eye_data[h]['reading'].append(1)
                                             break
                                 else:
                                     #print (['Annormal reading: ', j+1])
-                                    eye_data[h]['reading'][j + 1] = 3
-
+                                    eye_data[h]['reading'].append(3)
                                     break
                         else:
-                            #print(["Wrong data ", j+1])
-                            eye_data[h]['reading'][j + 1] = 5
+                            #print(["Wrong data D", j+1])
+                            eye_data[h]['reading'].append(0)
+                            continue
 
                         eye_data[h][j+1]['fixations']=Efix
                         eye_data[h][j+1]['saccades'] = Esac
@@ -255,7 +288,7 @@ def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Export the hea
         draw_heatmap(Efix, scrsize, imagefile=dirimage, durationweight=True, alpha=0.5,
                      savefilename=os.path.join(dir_s, condition, 'hm', usr, str(sent)))
 
-def writing_data(data, subject, condition, type): #creates the csv's for processing the results (statistics in R)
+def writing_data(data, subject, condition, typ): #creates the csv's for processing the results (statistics in R)
 
     # Linux
     # dir='/home/jars/Dropbox/'
@@ -271,7 +304,7 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
 
     dir = 'C:\Users\CG\Dropbox'
 
-    if type == 0: #extracting results from sente, order, times
+    if typ == 0: #extracting results from sente, order, times
         filename_ord = os.path.join(dir, 'data_exp', subject, condition, 'order.txt')
         filename_sen = os.path.join(dir, 'data_exp', subject, condition, 'sente.txt')
         order = np.loadtxt(filename_ord, unpack=True)
@@ -291,29 +324,43 @@ def writing_data(data, subject, condition, type): #creates the csv's for process
             newFileWriter.writerow(['answers','words','order','time_eye','time_key','time_wait'])
             for i in stack:
                 newFileWriter.writerow(i)
-    elif type==1:  #extracting results from eye data (saccades and fixations)
+    elif typ == 1:  #extracting results from eye data (saccades and fixations)
 
         with open('eye_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             nfw = csv.writer(newFile, delimiter=';')
-            nfw.writerow(['usr','condition','sentence','f/s','start','end','duration', 'amplitude'])
-            for j in data[subject][condition]:
-                fix=data[subject][condition][j]['dur_fix']
-                sacc=np.hstack((data[subject][condition][j]['dur_sacc'],data[subject][condition][j]['amplitude']))
-                sacc=sacc.tolist()
-                if fix==[]:
-                    fix=[[0,0,0]]
-                if sacc==[]:
-                    sacc=[[0,0,0]]
-                for i in fix:
-                    nfw.writerow([subject, condition, j, 'f'] + i + ['0'])
-                for i in sacc:
-                    nfw.writerow([subject, condition, j, 's'] + i)
+            nfw.writerow(['usr','condition','sentence','f/s','duration', 'amplitude'])
+            for j in sorted(data[subject][condition]):
+                if type(j) == int:
+                    fix=data[subject][condition][j]['dur_fix']
+                    dur_sac=data[subject][condition][j]['dur_sacc']
+                    amp_sac=data[subject][condition][j]['amplitude']
+                    if fix==[]:
+                        fix=[[0,0,0]]
+                    if amp_sac == [] or dur_sac == []:
+                        sacc=[[0,0,0]]
+                    else:
+                        sacc = np.concatenate([dur_sac, amp_sac], axis=1)
+                        sacc=sacc.tolist()
+
+                    for i in fix:
+                        nfw.writerow([subject, condition, j, 'f'] + i + ['0'])
+                    for i in sacc:
+                        nfw.writerow([subject, condition, j, 's'] + i)
+
+        if condition == 'va':
+            with open('reading_data_va.csv', 'ab+') as readvaFile:
+                rvaf = csv.writer(readvaFile, delimiter=';')
+                rvaf.writerow(data[subject]['va']['reading'])
+        elif condition == 'vs':
+            with open('reading_data_vs.csv', 'ab+') as readvsFile:
+                rvsf = csv.writer(readvsFile, delimiter=';')
+                rvsf.writerow(data[subject]['vs']['reading'])
 
 
 subjects = ['004','005','007','009','012','014','015','016','017','018','020','021','022','023','024','027']
-condition= ['va', 'vs']
+condition= ['va','vs']
 
-raw_sent = extract_data_subjects(subjects, condition)
+#raw_sent = extract_data_subjects(subjects, condition)
 #times = extract_data_subjects(subjects, condition, 1)
 eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number of subject']['condition'][number of sentence] (view keys for the options)
 #visualization_eye(eye_data,'003', 'va', 1, 1)
@@ -325,10 +372,11 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 
 for i in subjects:
    for j in condition:
-        #writing_data(eye_data,i,j,1)
-       for k in eye_data[i][j]:
-            if type(k) == int:
-                visualization_eye(eye_data,i, j, k, 1)
+        writing_data(eye_data,i,j,1)
+       #for k in eye_data[i][j]:
+        #    if type(k) == int:
+         #       print ([i, " ", j, " ", k])
+          #      visualization_eye(eye_data,i, j, k, 1)
            #visualization_eye(eye_data, i, j, k, 2)
 
 
