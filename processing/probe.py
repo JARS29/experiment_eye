@@ -162,7 +162,7 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                             eye_data[h]['reading'].append(0)
                             continue
 
-                        if len(Efix) is not 0:
+                        if len(Esac) is not 0:
                             #Double reading and final word saccade detection
                             for ind in range(len(Esac)):
                                 if(Esac[ind][3]>=954 and Esac[ind][3]<=1964) and (Esac[ind][4]>=730 and Esac[ind][4]<=850): #final word area
@@ -170,54 +170,40 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
                                         if(ind>=3): #Saccades index: After the third saccade
 
                                             ix=len(Esac)-ind#  difference
-                                            if ix<6:
+                                            if ix<=6:
                                                 #print(["Eliminating saccades: ", j + 1, Esac[ind][3:]], len(Esac), ind)
                                                 Esac = Esac[:-ix]
                                                 Ssac = Ssac[:-ix]
                                                 ampl = ampl[:-ix]
-                                                if ix > 2:  # Holding the last fixation
-                                                    Efix = Efix[:-ix]
-                                                    Sfix = Sfix[:-ix]
+                                                if ix > 4:  # Holding the last fixation
+                                                    Efix = Efix[:-ix+2]
+                                                    Sfix = Sfix[:-ix+2]
                                             break
-
+                        if len(Efix) is not 0:
                             for ind in range(len(Efix)):
-                                if (Efix[ind][3] <= 2200 and Efix[ind][3] >= 400) and (Efix[ind][4] <= 850 and Efix[ind][4] >= 730): #Innitial fixation at final word
-                                    if (ind <= 3):
-                                        if(Sfix[ind]>np.mean(Sfix)-np.std(Sfix)): #is it an aware fixation (longer than the mean of the fixations minus the standart deviation)
-                                            #print(["Fixation final word:  ", j+1, Sfix[ind], np.mean(Sfix),  ind])
-                                            eye_data[h]['reading'].append(2)
-                                            break
-                                        else:
-                                            if (ind>=1):  # were multiple short fixations?
-                                                #print(["Fixation final word double:  ", j + 1, Sfix[ind], np.mean(Sfix), ind])
+                                if (ind <= 3):
+                                    if (Efix[ind][3] <= 2200 and Efix[ind][3] >= 400) and (
+                                            Efix[ind][4] <= 850 and Efix[ind][4] >= 730):  # Innitial fixation at final word
+
+                                            if (Sfix[ind] > np.mean(Sfix) - np.std(Sfix)):  # is it an aware fixation (longer than the mean of the fixations minus the standart deviation)
+                                                # print(["Fixation final word:  ", j+1, Sfix[ind], np.mean(Sfix),  ind])
                                                 eye_data[h]['reading'].append(2)
-
                                                 break
-                                            else: # Elimiting wrong fixations.
-                                                #print(["Wrong final word fixation: ", j+1, Sfix[ind], np.mean(Sfix), ind])#final word wrong (due the last fixation in the previous sentence)
-                                                Efix = Efix[1:]
-                                                Esac = Esac[1:]
-                                                Sfix = Sfix[1:]
-                                                Ssac = Ssac[1:]
-                                                ampl = ampl[1:]
-                                                eye_data[h]['reading'].append(4)
+                                            else:
+                                                if (ind >= 1):  # were multiple short fixations?
+                                                    # print(["Fixation final word double:  ", j + 1, Sfix[ind], np.mean(Sfix), ind])
+                                                    eye_data[h]['reading'].append(2)
 
-                                            break
-                                elif (Efix[ind][3] <= 1500 ) and (Efix[ind][4] <= 740 and Efix[ind][4] >= 590): #Innitial fixations at the beginning (normal reading)
-                                    if (ind <= len(Efix) / 2):
-                                        count_fix = count_fix+1
-                                        if((len(Efix)/2)-count_fix<=1):
-                                            #print(['Normal reading: ', j+1, count_fix, len(Efix)/2])
-                                            eye_data[h]['reading'].append(1)
-                                            break
-                                else:
-                                    #print (['Annormal reading: ', j+1])
-                                    eye_data[h]['reading'].append(3)
-                                    break
-                        else:
-                            #print(["Wrong data D", j+1])
-                            eye_data[h]['reading'].append(0)
-                            continue
+                                                    break
+                                                else:  # Elimiting wrong fixations.
+                                                    # print(["Wrong final word fixation: ", j+1, Sfix[ind], np.mean(Sfix), ind])#final word wrong (due the last fixation in the previous sentence)
+                                                    Efix = Efix[1:]
+                                                    Esac = Esac[1:]
+                                                    Sfix = Sfix[1:]
+                                                    Ssac = Ssac[1:]
+                                                    ampl = ampl[1:]
+                                                    eye_data[h]['reading'].append(4)
+
 
                         eye_data[h][j+1]['fixations']=Efix
                         eye_data[h][j+1]['saccades'] = Esac
@@ -356,27 +342,297 @@ def writing_data(data, subject, condition, typ): #creates the csv's for processi
                 rvsf = csv.writer(readvsFile, delimiter=';')
                 rvsf.writerow(data[subject]['vs']['reading'])
 
+def visual_inspection(eye_data, subject, condition, sent, fix, sacc):
 
-subjects = ['004','005','007','009','012','014','015','016','017','018','020','021','022','023','024','027']
-condition= ['va','vs']
+    if len(fix) !=0:
+        eye_data[subject][condition][sent]['fixations'] = eye_data[subject][condition][sent]['fixations'][fix[0]:fix[1]]
+        eye_data[subject][condition][sent]['dur_fix'] = eye_data[subject][condition][sent]['dur_fix'][fix[0]:fix[1]]
+
+    if len(sacc) !=0:
+        eye_data[subject][condition][sent]['saccades'] = eye_data[subject][condition][sent]['saccades'][sacc[0]:sacc[1]]
+        eye_data[subject][condition][sent]['dur_sacc'] = eye_data[subject][condition][sent]['dur_sacc'][sacc[0]:sacc[1]]
+        eye_data[subject][condition][sent]['amplitude'] = eye_data[subject][condition][sent]['amplitude'][sacc[0]:sacc[1]]
+
+    return eye_data
+
+
+subjects = ['015']#'004', '005', '007', '012', '017']#,'012','014','015','016','017','018','020','021','022','023','024','027']
+condition= ['va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
+
 #times = extract_data_subjects(subjects, condition, 1)
 eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number of subject']['condition'][number of sentence] (view keys for the options)
-#visualization_eye(eye_data,'003', 'va', 1, 1)
-#visualization_eye(eye_data,'003', 'vs', 1, 1)
-#visualization_eye(eye_data,'014', 'va', 6, 1)
-#visualization_eye(eye_data,'022', 'vs', 17, 1)
 
 
+#################################
+####   Visual inspection     ####
+#################################
+
+#Double reading: DR
+#Final fixation error: FFE
+
+####004
+
+# eye_data= visual_inspection(eye_data, '004', 'va', 1, [1,17], [1,-5]) #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 2, [0,11], [0,-1]) #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 7, [0,6], [0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 10, [0,12], [0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 14, [0,13], [0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 15, [0,13], [0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 20, [0,15], [0,-6])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 24, [0,14], [0,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 28, [0,15], [0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 29, [1,15], [2,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 32, [1,14], [0,-3])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 33, [0,14],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 35, [1,14],[2,-1])  #FFE
+# eye_data= visual_inspection(eye_data, '004', 'va', 37, [0,11],[0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 38, [0,12],[1,-3])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 39, [],[0,-2])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 42, [1,12],[2,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 44, [0,15],[0,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 45, [0,11],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 46, [0,11],[0,-5])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 48, [0,13],[0,-3])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 51, [1,16],[4,1111])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 53, [1,14],[2,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 59, [0,16],[0,-5])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 61, [0,11],[0,-3])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 62, [0,12],[0,-2])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 63, [1,18],[2,1111])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 67, [1,15],[1,1111])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 69, [1,15],[1,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 72, [0,15],[1,1234])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 73, [0,11],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 74, [0,12],[0,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 76, [0,11],[0,-2])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 77, [0,17],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 78, [0,26],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 80, [1,12],[3,-4])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 82, [0,8],[0,-2])  #DR **
+# eye_data= visual_inspection(eye_data, '004', 'va', 83, [0,15],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 85, [0,11],[0,1111])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 87, [1,14],[1,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 88, [1,11],[1,-1])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 89, [1,14],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 93, [0,10],[])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 95, [1,12],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '004', 'va', 98, [0,19],[])  #DR
+
+
+####005
+# eye_data= visual_inspection(eye_data, '005', 'va', 2, [0,15],[0,-1])  #DR
+# eye_data= visual_inspection(eye_data, '005', 'va', 3, [],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '005', 'va', 4, [1,15],[1,-1])  #DR
+# eye_data= visual_inspection(eye_data, '005', 'va', 59, [1,12],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '005', 'va', 87, [],[0,-1])  #DR
+# eye_data= visual_inspection(eye_data, '005', 'va', 94, [],[0,-1])  #DR
+
+####007
+# eye_data= visual_inspection(eye_data, '007', 'va', 13, [0,12],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 23, [1,13],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 24, [1,8],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 27, [1,13],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 35, [1,17],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 39, [1,17],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 49, [1,17],[])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 64, [1,17],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 70, [1,8],[1,-3])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 81, [1,9],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 94, [1,9],[])  #DR
+# eye_data= visual_inspection(eye_data, '007', 'va', 99, [1,14],[1,111])  #DR
+
+
+
+####009
+
+# eye_data= visual_inspection(eye_data, '009', 'va', 2, [0,17],[])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 6, [1,15],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 9, [2,21],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 18, [1,17],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 19, [2,17],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 24, [1,14],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 26, [1,12],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 27, [2,18],[3,-1])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 48, [1,20],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 57, [1,15],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 58, [1,10],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 83, [1,18],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 88, [1,18],[2,-1])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 95, [3,18],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 96, [1,15],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '009', 'va', 99, [1,15],[2,111])  #DR
+
+#### 012
+
+# eye_data= visual_inspection(eye_data, '012', 'va', 3, [1,14],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 12, [1,22],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 13, [1,14],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 17, [1,20],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 22, [0,10],[])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 27, [1,18],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 33, [1,18],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 37, [1,17],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 44, [1,15],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 63, [2,19],[4,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 78, [1,12],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 82, [1,22],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 86, [],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 87, [1,21],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 89, [1,18],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '012', 'va', 95, [1,18],[2,111])  #DR
+
+####014
+
+# eye_data= visual_inspection(eye_data, '014', 'va', 4, [],[0,-2])  #DR **
+# eye_data= visual_inspection(eye_data, '014', 'va', 7, [1,15],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 8, [1,13],[1,-1])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 13, [1,15],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 19, [1,22],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 24, [2,15],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 29, [1,16],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 51, [],[5,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 70, [1,14],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 73, [],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 80, [1,15],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 82, [3,20],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '014', 'va', 93, [1,19],[4,111])  #DR
+
+
+####015
+
+####016
+
+
+
+####017
+
+# eye_data= visual_inspection(eye_data, '017', 'va', 1, [1,13],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 14, [2,13],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 23, [],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 33, [1,19],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 36, [1,17],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 46, [1,19],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 55, [],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 73, [1,18],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '017', 'va', 84, [1,16],[1,111])  #DR
+
+####018
+# eye_data= visual_inspection(eye_data, '018', 'va', 22, [1,14],[3,111])  #DR
+# eye_data= visual_inspection(eye_data, '018', 'va', 24, [1,14],[1,111])  #DR
+# eye_data= visual_inspection(eye_data, '018', 'va', 29, [2,16],[2,111])  #DR
+# eye_data= visual_inspection(eye_data, '018', 'va', 59, [1,14],[1,111])  #DR *
+
+####020
+
+
+####021
+
+# eye_data= visual_inspection(eye_data, '021', 'va', 6, [1,21],[3,111])
+# eye_data= visual_inspection(eye_data, '021', 'va', 8, [0,20],[])
+# eye_data= visual_inspection(eye_data, '021', 'va', 10, [1,23],[3,111])
+# eye_data= visual_inspection(eye_data, '021', 'va', 11, [1,23],[2,111])
+# eye_data= visual_inspection(eye_data, '021', 'va', 14, [1,17],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '021', 'va', 16, [1,21],[2,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 17, [1,21],[1,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 21, [0,21],[0,-1]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 24, [1,21],[2,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 26, [0,17],[0,-3]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 27, [0,15],[0,-3]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 32, [0,13],[0,-4]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 35, [0,23],[0,-3]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 36, [0,16],[3,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 39, [0,20],[0,-3]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 40, [0,18],[0,-2]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 42, [0,17],[0,-1]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 44, [],[1,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 51, [0,17],[0,-2]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 52, [1,17],[1,-3]) #*
+# eye_data= visual_inspection(eye_data, '021', 'va', 58, [0,17],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '021', 'va', 60, [1,18],[1,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 74, [1,11],[3,111]) #
+# eye_data= visual_inspection(eye_data, '021', 'va', 88, [0,20],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '021', 'va', 91, [2,22],[3,-2]) #
+
+####023
+
+# eye_data= visual_inspection(eye_data, '023', 'va', 1, [1,16],[1,111]) #
+# eye_data= visual_inspection(eye_data, '023', 'va', 2, [1,24],[1,-3]) #
+# eye_data= visual_inspection(eye_data, '023', 'va', 4, [0,21],[0,-5]) #
+# eye_data= visual_inspection(eye_data, '023', 'va', 5, [2,21],[2,-5]) #
+# eye_data= visual_inspection(eye_data, '023', 'va', 6, [0,21],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 7, [0,16],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 8, [1,20],[2,-4]) #
+# eye_data= visual_inspection(eye_data, '023', 'va', 9, [0,20],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 11, [0,21],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 12, [1,20],[2,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 13, [0,21],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 14, [0,20],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 16, [0,22],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 17, [1,22],[2,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 19, [0,23],[0,-8]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 20, [0,20],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 22, [0,26],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 23, [1,23],[2,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 26, [0,22],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 27, [2,24],[2,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 29, [0,20],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 30, [1,19],[2,-8]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 31, [0,20],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 34, [1,20],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 38, [1,22],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 40, [0,11],[1,-10]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 41, [2,21],[3,-8]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 42, [1,25],[3,-2]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 43, [0,24],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 45, [0,26],[0,-4]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 47, [0,13],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 48, [0,22],[0,-4]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 49, [0,23],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 51, [0,19],[0,-2]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 52, [3,22],[3,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 53, [0,23],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 54, [0,20],[0,-2]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 55, [0,23],[0,-4]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 56, [0,17],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 58, [0,23],[0,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 59, [1,24],[2,-4]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 60, [2,25],[2,-5]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 61, [1,23],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 64, [1,26],[2,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 65, [0,19],[0,-8]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 68, [0,23],[1,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 69, [0,21],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 70, [2,27],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 71, [0,22],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 73, [0,23],[0,-4]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 74, [2,23],[0,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 79, [0,20],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 80, [0,22],[]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 81, [1,24],[1,-4]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 82, [1,23],[2,-7]) #**
+# eye_data= visual_inspection(eye_data, '023', 'va', 83, [3,20],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 85, [0,25],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 86, [2,20],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 87, [2,26],[4,111]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 90, [0,21],[0,-3]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 92, [0,20],[0,-8]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 95, [2,23],[4,-6]) #*
+# eye_data= visual_inspection(eye_data, '023', 'va', 98, [0,18],[0,-6]) #*
+
+
+####024
+
+####027
 
 for i in subjects:
    for j in condition:
-        writing_data(eye_data,i,j,1)
-       #for k in eye_data[i][j]:
-        #    if type(k) == int:
-         #       print ([i, " ", j, " ", k])
-          #      visualization_eye(eye_data,i, j, k, 1)
+        #writing_data(eye_data,i,j,1)
+        for k in eye_data[i][j]:
+            if type(k) == int:
+                #print ([i, " ", j, " ", k])
+                visualization_eye(eye_data,i, j, k, 1)
            #visualization_eye(eye_data, i, j, k, 2)
 
 

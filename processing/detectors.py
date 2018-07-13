@@ -156,7 +156,7 @@ def fixation_detection(x, y, time, missing=0.0, maxdist=50, mindur=80):
             fixstart = False
             # only store the fixation if the duration is ok
             if time[i-1]-Sfix[-1][0] >= mindur:
-                if y[si] <= 825 and y[si]>=609:
+                if y[si] <= 850 and y[si]>=550:
                     Efix.append([Sfix[-1][0], time[i-1], time[i-1]-Sfix[-1][0], x[si], y[si]])
                     dur.append([numpy.around(time[i-1]-Sfix[-1][0], decimals=3)])
             # delete the last fixation start if it was too short
@@ -256,7 +256,7 @@ def saccade_detection(x, y, time, missing=0.0, minlen=20, maxvel=1385, maxacc=36
                 # ignore saccades that did not last long enough
                 if dur >= minlen:
                     # add to saccade ends
-                    if (y[t1i] <= 825 and y[t1i]>= 609) and (y[t2i] <= 825 and y[t2i] >= 609):
+                    if (y[t1i] <= 850 and y[t1i]>= 550) and (y[t2i] <= 850 and y[t2i] >= 550):
 
                         Esac.append([t1, t2, dur, x[t1i], y[t1i], x[t2i], y[t2i]])
                         dr.append([numpy.around(dur,decimals=3)])
