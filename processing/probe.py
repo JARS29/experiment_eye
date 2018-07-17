@@ -356,7 +356,7 @@ def visual_inspection(eye_data, subject, condition, sent, fix, sacc):
     return eye_data
 
 
-subjects = ['015']#'004', '005', '007', '012', '017']#,'012','014','015','016','017','018','020','021','022','023','024','027']
+subjects = ['027']#'004', '005', '007', '012', '017']#,'012','014','015','016','017','018','020','021','022','023','024','027']
 condition= ['va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
@@ -502,8 +502,70 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 
 ####015
 
+# eye_data= visual_inspection(eye_data, '015', 'va', 11, [1,18],[2,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 15, [1,15],[2,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 21, [1,17],[2,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 23, [1,14],[2,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 24, [1,15],[1,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 27, [2,20],[2,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 30, [1,20],[1,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 31, [1,15],[1,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 35, [1,18],[1,111])
+# eye_data= visual_inspection(eye_data, '015', 'va', 40, [0,12],[1,-6]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 42, [0,17],[]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 54, [1,17],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 63, [1,17],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 67, [1,19],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 70, [1,19],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 71, [1,19],[3,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 72, [1,24],[4,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 73, [1,24],[5,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 74, [],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 78, [1,13],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 84, [1,13],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 91, [2,15],[3,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 95, [2,17],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 98, [2,19],[3,111]) ###
+# eye_data= visual_inspection(eye_data, '015', 'va', 99, [2,19],[]) ###
+
 ####016
 
+# eye_data= visual_inspection(eye_data, '016', 'va', 1, [1,20],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 4, [1,20],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 5, [1,16],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 7, [1,19],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 8, [1,15],[4,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 9, [1,15],[4,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 10, [1,10],[3,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 11, [1,15],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 12, [2,15],[5,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 14, [2,18],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 17, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 20, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 27, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 31, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 32, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 33, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 36, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 37, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 40, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 41, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 42, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 44, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 51, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 52, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 53, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 56, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 59, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 64, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 67, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 70, [1,111],[]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 74, [1,111],[2,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 84, [1,111],[3,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 87, [1,111],[1,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 97, [1,111],[3,111]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 98, [0,11],[]) ###
+# eye_data= visual_inspection(eye_data, '016', 'va', 99, [1,11],[2,111]) ###
 
 
 ####017
@@ -525,6 +587,38 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 # eye_data= visual_inspection(eye_data, '018', 'va', 59, [1,14],[1,111])  #DR *
 
 ####020
+
+# eye_data= visual_inspection(eye_data, '020', 'va', 1, [1,111],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 14, [0,10],[])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 16, [1,10],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 21, [1,13],[1,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 22, [1,22],[2,-4])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 23, [1,22],[3,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 24, [1,21],[1,-1])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 26, [1,18],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 27, [1,16],[1,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 30, [0,13],[0,-5])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 31, [0,16],[0,-1])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 34, [1,14],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 36, [2,18],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 38, [1,15],[1,-5])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 39, [2,15],[1,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 40, [0,22],[0,-4])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 48, [1,13],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 53, [1,14],[1,-1])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 57, [1,24],[2,-3])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 65, [1,14],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 66, [1,15],[1,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 83, [1,13],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 86, [0,16],[0,-6])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 87, [1,21],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 88, [1,19],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 89, [0,14],[0,-5])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 93, [0,18],[])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 94, [1,15],[1,-4])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 95, [0,15],[])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 97, [1,16],[2,111])  #
+# eye_data= visual_inspection(eye_data, '020', 'va', 99, [1,17],[1,-1])  #
 
 
 ####021
@@ -554,6 +648,51 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 # eye_data= visual_inspection(eye_data, '021', 'va', 74, [1,11],[3,111]) #
 # eye_data= visual_inspection(eye_data, '021', 'va', 88, [0,20],[0,-3]) #*
 # eye_data= visual_inspection(eye_data, '021', 'va', 91, [2,22],[3,-2]) #
+
+###022
+# eye_data= visual_inspection(eye_data, '022', 'va', 1, [0,20],[0,-4]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 2, [0,17],[0,-7]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 3, [2,24],[2,-3]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 4, [0,18],[0,-8]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 5, [0,19],[0,-8]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 7, [0,21],[0,-6]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 8, [1,19],[2,-3]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 9, [0,18],[2,-3]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 12, [0,16],[0,-8]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 14, [0,15],[0,-9]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 16, [0,15],[0,-6]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 17, [0,20],[0,-3]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 20, [0,20],[0,-7]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 21, [1,21],[3,-7]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 23, [0,19],[0,-7]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 33, [0,16],[0,-7]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 34, [1,15],[1,-9]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 35, [1,18],[1,-4]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 36, [0,16],[]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 42, [1,18],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 46, [1,16],[1,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 52, [1,17],[2,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 53, [1,19],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 58, [1,15],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 61, [1,17],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 62, [1,17],[1,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 65, [1,20],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 67, [1,15],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 68, [1,15],[1,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 69, [0,13],[0,-3]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 70, [1,12],[2,-2]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 72, [],[1,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 73, [1,13],[4,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 79, [2,13],[2,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 81, [],[1,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 82, [1,15],[3,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 83, [1,11],[2,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 84, [1,11],[2,-3]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 86, [1,14],[4,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 88, [1,14],[2,-1]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 90, [1,14],[1,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 92, [1,15],[2,111]) #
+# eye_data= visual_inspection(eye_data, '022', 'va', 99, [],[1,111]) #
 
 ####023
 
@@ -624,7 +763,73 @@ eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number 
 
 ####024
 
+# eye_data= visual_inspection(eye_data, '024', 'va', 1, [1,25],[2,-3]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 2, [0,20],[0,-7]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 4, [0,16],[2,-7]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 5, [0,18],[0,-6]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 9, [1,18],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 11, [1,17],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 13, [2,112],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 14, [1,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 17, [1,112],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 21, [1,112],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 22, [2,112],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 23, [1,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 24, [2,112],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 27, [1,112],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 28, [2,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 30, [1,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 33, [1,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 38, [1,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 39, [1,112],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 42, [4,112],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 52, [2,112],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 54, [1,112],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 56, [],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 62, [],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 67, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 68, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 69, [1,111],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 73, [],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 77, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 91, [2,111],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '024', 'va', 94, [1,111],[2,111]) #*
+
 ####027
+
+# eye_data= visual_inspection(eye_data, '027', 'va', 1, [0,22],[0,-1]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 3, [1,15],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 8, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 9, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 11, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 12, [1,111],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 15, [1,111],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 17, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 21, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 22, [1,111],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 24, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 30, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 36, [1,111],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 42, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 47, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 48, [3,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 49, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 55, [1,111],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 58, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 59, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 60, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 62, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 67, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 71, [1,16],[]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 72, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 76, [],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 81, [1,111],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 82, [1,111],[2,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 90, [1,111],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 91, [2,111],[3,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 94, [1,111],[1,111]) #*
+# eye_data= visual_inspection(eye_data, '027', 'va', 99, [1,111],[3,111]) #*
+
 
 for i in subjects:
    for j in condition:
@@ -635,5 +840,3 @@ for i in subjects:
                 visualization_eye(eye_data,i, j, k, 1)
            #visualization_eye(eye_data, i, j, k, 2)
 
-
-####Center fixation filtering
