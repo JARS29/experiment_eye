@@ -71,13 +71,13 @@ def extract_data_subjects(subjects, condition, type=0): #Extract the data for n 
     usr_eye_data={}
     eye_data={}
     #Windows
-    #dir= 'C:\Users\JARS\Dropbox'
+    dir= 'C:\Users\JARS\Dropbox'
 
     #LINUX
     #dir= '/home/jars/Dropbox'
 
     #PC LAB
-    dir = 'C:\Users\CG\Dropbox'
+    #dir = 'C:\Users\CG\Dropbox'
     for i in subjects:
         for h in condition:
             filename_eye = os.path.join(dir, 'data_exp', str(i), str(h), 'raw_eye.txt')
@@ -243,16 +243,16 @@ def visualization_eye(raw_sent, usr, condition, sent, type=0):  # Export the hea
     #dir='/home/jars/Dropbox/'
 
     #Windows - Laptop
-    #dir= 'C:\Users\JARS\Dropbox'
+    dir= 'C:\Users\JARS\Dropbox'
 
     ##Windows - PC LAB
-    dir = 'C:\Users\CG\Dropbox'
+    #dir = 'C:\Users\CG\Dropbox'
 
     #Default
     #dir = os.path.dirname('__file__')
 
     #PC Lab
-    dir_s=  'C:\Users\CG\Pictures\exp'
+    #dir_s=  'C:\Users\CG\Pictures\exp'
 
     #dir_s='/home/jars/data_exp/images'
     Efix= raw_sent[usr][condition][sent]['fixations']
@@ -281,7 +281,7 @@ def writing_data(data, subject, condition, typ): #creates the csv's for processi
     # dir='/home/jars/Dropbox/'
 
     # Windows - Laptop
-    # dir= 'C:\Users\JARS\Dropbox'
+    dir= 'C:\Users\JARS\Dropbox'
 
     # Default
     # dir = os.path.dirname('__file__')
@@ -289,7 +289,7 @@ def writing_data(data, subject, condition, typ): #creates the csv's for processi
     # PC Lab
     #dir_s = 'C:\Users\CG\Pictures\exp\csv'
 
-    dir = 'C:\Users\CG\Dropbox'
+    #dir = 'C:\Users\CG\Dropbox'
 
     if typ == 0: #extracting results from sente, order, times
         filename_ord = os.path.join(dir, 'data_exp', subject, condition, 'order.txt')
@@ -315,33 +315,35 @@ def writing_data(data, subject, condition, typ): #creates the csv's for processi
 
         with open('eye_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             nfw = csv.writer(newFile, delimiter=';')
-            nfw.writerow(['usr','condition','sentence','f/s','duration', 'amplitude', 'num_f_s', 'duration_first_f_s' , 'duration_last_f_s'])
+            nfw.writerow(['usr','condition','sentence','f/s','duration', 'amplitude', 'num_f_s', 'duration_first_f_s' , 'duration_last_f_s']
+                         # 'amp_first_s', 'amp_last_s', 'type_first_s', 'type_last_s', 'num_reg','num_prog'])
             for j in sorted(data[subject][condition]):
                 if type(j) == int:
-
+                    print([subject, condition])
                     fix=data[subject][condition][j]['dur_fix']
                     dur_sac=data[subject][condition][j]['dur_sacc']
                     amp_sac=data[subject][condition][j]['amplitude']
-                    num_fix=len(fix)
-                    num_sacc=len(dur_sac)
 
                     if fix==[]:
                         fix=[[0,0,0,0,0,0]]
-                    firts_f = fix[0]
-                    last_f = fix[-1]
+
                     if amp_sac == [] or dur_sac == []:
                         sacc=[[0,0,0,0,0,0]]
-                        firts_f,firts_s,last_f,last_s = 0
                     else:
                         sacc = np.concatenate([dur_sac, amp_sac], axis=1)
                         sacc=sacc.tolist()
-                        firts_s = dur_sac[0]
-                        last_s = dur_sac[-1]
+
+                    num_fix = len(fix)
+                    num_sacc = len(dur_sac)
+                    firts_f = fix[0]
+                    last_f = fix[-1]
+                    firts_s = sacc[0][0]
+                    last_s = sacc[-1][0]
 
                     for i in fix:
                         nfw.writerow([subject, condition, j, 'f'] + i + ['0'] + [num_fix] + firts_f + last_f)
                     for i in sacc:
-                        nfw.writerow([subject, condition, j, 's'] + i + [num_sacc] + firts_s + last_s)
+                        nfw.writerow([subject, condition, j, 's'] + i + [num_sacc] + [firts_s] + [last_s])
 
         if condition == 'va':
             with open('reading_data_va.csv', 'ab+') as readvaFile:
@@ -375,7 +377,7 @@ condition= ['va','vs']
 #times = extract_data_subjects(subjects, condition, 1)
 eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number of subject']['condition'][number of sentence] (view keys for the options)
 
-eye_data=data_inspection(eye_data)
+eye_data=data_inspection(eye_data, subjects, condition)
 
 
 for i in subjects:
@@ -386,4 +388,3 @@ for i in subjects:
 #                 #print ([i, " ", j, " ", k])
 #                 visualization_eye(eye_data,i, j, k, 1)
            #visualization_eye(eye_data, i, j, k, 2)
-
