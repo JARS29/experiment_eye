@@ -315,35 +315,57 @@ def writing_data(data, subject, condition, typ): #creates the csv's for processi
 
         with open('eye_data_' + subject + '_' + condition + '.csv', 'wb') as newFile:
             nfw = csv.writer(newFile, delimiter=';')
-            nfw.writerow(['usr','condition','sentence','f/s','duration', 'amplitude', 'num_f_s', 'duration_first_f_s' , 'duration_last_f_s']
-                         # 'amp_first_s', 'amp_last_s', 'type_first_s', 'type_last_s', 'num_reg','num_prog'])
+            nfw.writerow(['usr','condition','sentence','f/s','duration', 'amplitude', 'num_f_s', 'duration_first_f_s' , 'duration_last_f_s',
+                         'amp_first_s', 'amp_last_s', 'num_reg','num_prog']) #'type_first_s', 'type_last_s', 'num_reg','num_prog'])
             for j in sorted(data[subject][condition]):
                 if type(j) == int:
                     print([subject, condition])
                     fix=data[subject][condition][j]['dur_fix']
                     dur_sac=data[subject][condition][j]['dur_sacc']
                     amp_sac=data[subject][condition][j]['amplitude']
+                    num_fix = len(fix)
 
                     if fix==[]:
-                        fix=[[0,0,0,0,0,0]]
+                        fix=[[0,0,0,0,0]]#,0,0]]
+                        first_f=[0]
+                        last_f=[0]
+                    else:
+                        first_f = fix[0]
+                        last_f = fix[-1] + [0,0,0,0]
 
                     if amp_sac == [] or dur_sac == []:
-                        sacc=[[0,0,0,0,0,0]]
+                        sacc=[[0,0]]#,0,0]]
+                        num_sacc = 0
+                        firts_s = 0
+                        last_s = 0
+                        amp_first_s = 0
+                        amp_last_s = 0
+                        num_reg = 0
+                        num_prog = 0
                     else:
                         sacc = np.concatenate([dur_sac, amp_sac], axis=1)
                         sacc=sacc.tolist()
-
-                    num_fix = len(fix)
-                    num_sacc = len(dur_sac)
-                    firts_f = fix[0]
-                    last_f = fix[-1]
-                    firts_s = sacc[0][0]
-                    last_s = sacc[-1][0]
+                        num_sacc = len(dur_sac)
+                        firts_s = sacc[0][0]
+                        last_s = sacc[-1][0]
+                        amp_first_s=sacc[0][1]
+                        amp_last_s =sacc[-1][1]
+                        num_reg = sum(x[1]<0 for x in sacc)
+                        num_prog = sum(x[1]>0 for x in sacc)
+                    # if amp_first_s>0:
+                    #     type_first_s='P'
+                    # else:
+                    #     type_first_s='R'
+                    #
+                    # if amp_last_s>0:
+                    #     type_last_s='P'
+                    # else:
+                    #     type_last_s='R'
 
                     for i in fix:
-                        nfw.writerow([subject, condition, j, 'f'] + i + ['0'] + [num_fix] + firts_f + last_f)
+                        nfw.writerow([subject, condition, j, 'f'] + i + ['0'] +  [num_fix] + first_f  + last_f)# + ['0','0','0','0'])
                     for i in sacc:
-                        nfw.writerow([subject, condition, j, 's'] + i + [num_sacc] + [firts_s] + [last_s])
+                        nfw.writerow([subject, condition, j, 's'] + i + [num_sacc] + [firts_s] + [last_s] + [amp_first_s] + [amp_last_s] + [num_reg] + [num_prog]) #+ [type_first_s] + [type_last_s])
 
         if condition == 'va':
             with open('reading_data_va.csv', 'ab+') as readvaFile:
@@ -370,7 +392,7 @@ def visual_inspection(eye_data, subject, condition, sent, fix, sacc):
 
 subjects = ['004', '005', '007', '009','012','014','015','016','017','018',
              '020','021','022','023','024','027']
-condition= ['va','vs']
+condition= ['vs','va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
 
