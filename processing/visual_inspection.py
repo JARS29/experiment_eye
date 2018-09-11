@@ -194,6 +194,227 @@ def data_inspection(eye_data, subjects, condition):
             eye_data= visual_inspection(eye_data, '009', 'vs', 12, [1,111],[1,111])  #DR
             eye_data= visual_inspection(eye_data, '009', 'vs', 18, [1,111],[2,111])  #DR
 
+    ###010
+
+    if '010' in subjects:
+        if 'va' in condition:
+            eye_data = visual_inspection(eye_data, '010', 'va', 1, [], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 2, [], [0, -2])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 6, [1, 12], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 7, [1, 20], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 8, [1, 21], [1, -2])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 10, [1, 18], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 11, [1, 18], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 12, [3, 18], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 13, [2, 18], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 14, [1, 18], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 15, [4, 18], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 17, [0, -2], [])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 20, [2, -2], [5, -5])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 21, [1, 16], [4, -1])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 24, [1, 16], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 28, [1, 111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 32, [2, 111], [6, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 33, [2, 111], [5, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 35, [1, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 37, [1, -1], [1, -3])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 39, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 43, [], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 44, [1, 15], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 46, [1, 15], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 49, [1, 15], [2, -2])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 52, [1, 16], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 54, [1, 111], [0, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 55, [1, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 56, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 57, [3, 111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 61, [3, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 62, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 65, [1, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 66, [1, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 67, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 68, [3, 111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 69, [2, 111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 71, [1, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 72, [3, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 74, [1, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 76, [1, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 77, [1, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 78, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 80, [2, 111], [5, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 81, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 83, [1, -2], [3, -3])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 84, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 86, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 87, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 88, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 89, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 90, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 93, [2, -7], [4, -8])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 94, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 96, [3, 111], [5, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'va', 99, [2, 111], [3, 111])  # DR
+
+
+        elif 'vs' in condition:
+            eye_data = visual_inspection(eye_data, '010', 'vs', 1, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 2, [2,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 4, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 5, [1,-1], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 6, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 7, [3,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 9, [2,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 11, [2,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 13, [2,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 14, [2,111], [5, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 17, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 26, [0,-6], [0, -7])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 30, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 33, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 34, [], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 59, [1,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 60, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 62, [0,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 63, [1,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 65, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 73, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 74, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 76, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 78, [1,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 80, [1,111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 81, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 85, [2,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 98, [3,111], [1, 111])  # DR
+
+    ###011
+
+    if '011' in subjects:
+        if 'va' in condition:
+            eye_data = visual_inspection(eye_data, '011', 'va', 1, [2,-6], [3, -8])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 2, [2,-1], [3, -1])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 6, [1, 111], [])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 7, [1, -3], [0,-3])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 9, [0, -2], [0,-2])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 11, [1, 112], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 14, [2, 112], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 15, [1, 112], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 16, [2, 112], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 21, [2, 112], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 22, [], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 23, [1,111], [3,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 27, [0,-2], [1,-3])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 29, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 32, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 33, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 34, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 35, [1,111], [3,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 36, [1,-1], [3,-2])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 37, [1,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 41, [2,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 44, [3,111], [4,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 47, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 48, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 49, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 52, [2,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 53, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 55, [2,111], [3,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 58, [1,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 59, [1,111], [3,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 61, [1,111], [4,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 66, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 67, [2,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 68, [1,111], [4,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 69, [2,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 74, [1,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 80, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 81, [1,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 82, [1,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 84, [2,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 88, [2,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 92, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 93, [1,111], [2,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 94, [3,111], [1,111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'va', 98, [2,111], [1,111])  # DR
+
+
+        elif 'vs' in condition:
+            eye_data = visual_inspection(eye_data, '011', 'vs', 1, [0, -1], [1, -1])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 2, [1, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 4, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 8, [0, -4], [0, -6])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 10, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 17, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 18, [1,111 ], [3, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 21, [1,111 ], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 22, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 23, [3,111 ], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 24, [2,111 ], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 27, [2,111 ], [3, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 28, [2,111 ], [3, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 29, [2,111 ], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 32, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 33, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 34, [1,111 ], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 35, [1,111 ], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 40, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 43, [1,111 ], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 46, [2,111 ], [4, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 47, [], [1, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 48, [1,111], [2, 116])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 51, [1,-1], [0, -1])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 52, [1,111], [2, -1])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 53, [1,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 54, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 56, [], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 57, [], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 59, [2,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 60, [1,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 62, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 63, [2,111], [5, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 64, [1,111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 65, [2,111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 67, [1,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 70, [3,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 79, [2,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 80, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 82, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 88, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 91, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 92, [2,111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 93, [], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 94, [1,111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 95, [1,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 98, [1,111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '011', 'vs', 99, [2,111], [3, 111])  # DR
+
+            eye_data = visual_inspection(eye_data, '010', 'vs', 2, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 4, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 5, [1, -1], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 6, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 7, [3, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 9, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 11, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 13, [2, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 14, [2, 111], [5, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 17, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 26, [0, -6], [0, -7])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 30, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 33, [1, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 34, [], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 59, [1, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 60, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 62, [0, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 63, [1, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 65, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 73, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 74, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 76, [2, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 78, [1, 111], [3, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 80, [1, 111], [4, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 81, [1, 111], [2, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 85, [2, 111], [1, 111])  # DR
+            eye_data = visual_inspection(eye_data, '010', 'vs', 98, [3, 111], [1, 111])  # DR
+
     ### 012
     if '012' in subjects:
         if 'va' in condition:

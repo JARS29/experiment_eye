@@ -350,8 +350,10 @@ def writing_data(data, subject, condition, typ): #creates the csv's for processi
 
 
 
-subjects = ['004', '005', '007', '009','012','014','015','016','017','018',
-             '020','021','022','023','024','027']
+subjects = ['010','011']
+
+    #['004', '005', '007', '009','012','014','015','016','017','018',
+     #        '020','021','022','023','024','027']
 condition= ['vs','va']
 
 #raw_sent = extract_data_subjects(subjects, condition)
@@ -359,14 +361,14 @@ condition= ['vs','va']
 #times = extract_data_subjects(subjects, condition, 1)
 eye_data = extract_data_subjects(subjects, condition, 2) #Use: eye_data['number of subject']['condition'][number of sentence] (view keys for the options)
 
-eye_data=data_inspection(eye_data, subjects, condition)
+#eye_data=data_inspection(eye_data, subjects, condition)
 
 
 for i in subjects:
    for j in condition:
-        writing_data(eye_data,i,j,1)
-        #for k in eye_data[i][j]:
-             #if type(k) == int:
-#                 #print ([i, " ", j, " ", k])
-                 #visualization_eye(eye_data,i, j, k, 1)
+        #writing_data(eye_data,i,j,1)
+        for k in eye_data[i][j]:
+             if type(k) == int:
+                print ([i, " ", j, " ", k])
+                visualization_eye(eye_data,i, j, k, 1)
            #visualization_eye(eye_data, i, j, k, 2)
